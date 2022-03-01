@@ -1,0 +1,127 @@
+
+<div class="container mt-5 p-4 user-form">
+  <h4 class="text-left mb-4">User Registration</h4>
+  <form [formGroup]="addUserForm" (ngSubmit)="submitUser()" class="row g-3">
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Salutation</label>
+      <select class="form-select user-form__input">
+        <option>Choose...</option>
+        <option>Mr</option>
+        <option>Mrs</option>
+        <option>Miss</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">First Name</label>
+      <input type="email" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Middle Name</label>
+      <input type="password" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Last Name</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Address No</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Street 01</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Street 02</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">City</label>
+      <select class="form-select user-form__input">
+        <option>Choose...</option>
+        <option>Colombo</option>
+        <option>Galle</option>
+        <option>Kandy</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Contact No 01</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Contact No 02</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">NIC</label>
+      <input type="text" class="form-control user-form__input">
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Email</label>
+      <input  formControlName="email" type="email" class="form-control user-form__input" [ngClass]="{ 'is-invalid': (isFormSubmitted && addUserForm.controls.email.errors) || (!addUserForm.controls.email.pristine && addUserForm.controls.email.invalid) }">
+      <div class="invalid-feedback"
+           *ngIf="(isFormSubmitted && addUserForm.controls.email.errors) || (!addUserForm.controls.email.pristine && addUserForm.controls.email.invalid)">
+        <div *ngIf="addUserForm.controls.email.errors?.required">Email is required</div>
+        <div *ngIf="addUserForm.controls.email.errors?.pattern">Enter valid email</div>
+      </div>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Password</label>
+      <input formControlName="password" type="password" class="form-control user-form__input" [ngClass]="{ 'is-invalid': (isFormSubmitted && addUserForm.controls.password.errors) || (!addUserForm.controls.password.pristine && addUserForm.controls.password.invalid) }">
+      <div class="invalid-feedback"
+           *ngIf="(isFormSubmitted && addUserForm.controls.password.errors) || (!addUserForm.controls.password.pristine && addUserForm.controls.password.invalid)">
+        <div *ngIf="addUserForm.controls.password.errors?.required">Password is required</div>
+        <div *ngIf="addUserForm.controls.password.errors?.minlength">Minimum 8 characters required</div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label  class="form-label user-form__label">User Type</label>
+      <select class="form-select user-form__input">
+        <option>Choose...</option>
+        <option>Item 1</option>
+        <option>Item 2</option>
+        <option>Item 3</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label  class="form-label user-form__label">Status</label>
+      <select class="form-select user-form__input">
+        <option >Choose...</option>
+        <option>Item 1</option>
+        <option>Item 2</option>
+        <option>Item 3</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label  class="form-label user-form__label">Gender</label>
+      <select class="form-select user-form__input">
+        <option >Choose...</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label  class="form-label user-form__label">Marital Status</label>
+      <select class="form-select user-form__input">
+        <option >Choose...</option>
+        <option>Single</option>
+        <option>Married</option>
+        <option>Divorced</option>
+      </select>
+    </div>
+    <div class="col-md-6 mt-4">
+      <label class="form-label user-form__label">Profile Picture</label>
+      <input class="form-control user-form__input" type="file" id="formFile">
+    </div>
+    <div class="col-12 mt-4">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-secondary ms-2">Cancel</button>
+    </div>
+  </form>
+</div>
+
+
+
