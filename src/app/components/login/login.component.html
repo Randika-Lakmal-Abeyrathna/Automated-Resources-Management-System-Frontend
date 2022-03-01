@@ -1,0 +1,29 @@
+<main class="form-signin">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" >
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input  formControlName="nic" type="text" class="form-control" id="nic" placeholder="NIC">
+      <label for="nic">NIC</label>
+      <div class="invalid-feedback"
+           *ngIf="(isFormSubmitted && loginForm.controls.nic.errors) || (!loginForm.controls.nic.pristine && loginForm.controls.nic.invalid)">
+        <div *ngIf="loginForm.controls.nic.errors?.required">NIC is required</div>
+      </div>
+    </div>
+    <div class="form-floating">
+      <input  formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+      <label for="password">Password</label>
+      <div class="invalid-feedback"
+           *ngIf="(isFormSubmitted && loginForm.controls.password.errors) || (!loginForm.controls.password.pristine && loginForm.controls.password.invalid)">
+        <div *ngIf="loginForm.controls.password.errors?.required">Password is required</div>
+      </div>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+  </form>
+</main>
