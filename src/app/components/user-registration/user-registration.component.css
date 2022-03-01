@@ -1,0 +1,12 @@
+.user-form{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #ffffff !important;
+}
+
+.user-form__label{
+  font-weight: 600;
+  font-size: 15px;
+}
+.user-form__input{
+  box-shadow: none !important;
+}
