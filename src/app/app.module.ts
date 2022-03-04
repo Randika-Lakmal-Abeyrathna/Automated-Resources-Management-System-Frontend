@@ -7,12 +7,14 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './components/login/login.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
