@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import {HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {LoginServiceService} from "./service/login-service.service";
+import {AuthRouteGuard} from "./guards/auth.route.guard";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {LoginServiceService} from "./service/login-service.service";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginServiceService],
+  providers: [LoginServiceService,AuthRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

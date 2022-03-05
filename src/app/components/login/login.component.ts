@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   constructor( private formBuilder: FormBuilder, private loginService: LoginServiceService, private http:HttpClient,
-               private router:Router) { }
+               private router:Router) {
+
+  }
 
   isFormSubmitted = false;
   ngOnInit(): void {
@@ -46,11 +48,10 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
       (data:HttpResponse<any> )=> {
-        console.log(data.headers.get('Authorization'));
         this.loginService.checkAccesstoken(data.headers.get('Authorization'));
 
 
-
+        return this.router.navigateByUrl("dashboard");
       },
         error => {
         if (error.status == 403){

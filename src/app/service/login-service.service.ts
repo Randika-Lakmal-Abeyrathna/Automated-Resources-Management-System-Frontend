@@ -13,7 +13,30 @@ export class LoginServiceService {
 
   userInfo:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   jwtHelper = new JwtHelperService();
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: Router) {
+    this.loadUserInfo();
+
+  }
+
+  loadUserInfo(){
+    const userDetail = this.userInfo.getValue();
+    console.log("user details",userDetail);
+    if (!userDetail){
+
+      const accesstoken=localStorage.getItem('access_token');
+
+      if (accesstoken){
+        const decryptedAccessToken = this.jwtHelper.decodeToken(accesstoken);
+        const userdata = {
+          access_token : accesstoken,
+          userid : decryptedAccessToken.sub
+        };
+
+        this.userInfo.next(userdata);
+      }
+    }
+  }
+
 
   login(data:any){
     return this.http.post<any>(this._loginUrl,data,{observe:'response' as 'body'});
@@ -36,7 +59,7 @@ export class LoginServiceService {
 
     this.userInfo.next(userdata);
 
-    return this.router.navigateByUrl("dashboard");
+    // return this.router.navigateByUrl("dashboard");
 
   }
 }

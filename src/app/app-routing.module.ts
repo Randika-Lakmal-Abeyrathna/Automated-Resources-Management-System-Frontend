@@ -4,12 +4,22 @@ import {UserRegistrationComponent} from "./components/user-registration/user-reg
 import {LoginComponent} from "./components/login/login.component";
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AuthRouteGuard} from "./guards/auth.route.guard";
 
 const routes: Routes = [
-  {path:"register",component:UserRegistrationComponent },
-  {path:"",component:LoginComponent },
-  {path:"forgot",component:ForgotPasswordComponent},
-  {path:"dashboard",component:DashboardComponent}
+  {path:"register",component:UserRegistrationComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {path:"login",component:LoginComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {path:"forgot",component:ForgotPasswordComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {path:"dashboard",component:DashboardComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {path:"",redirectTo:'/login',pathMatch:'full'}
 ];
 
 @NgModule({
