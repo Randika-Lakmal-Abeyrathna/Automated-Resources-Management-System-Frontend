@@ -12,6 +12,8 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+ loginError ="";
+
   loginForm!: FormGroup;
   constructor( private formBuilder: FormBuilder, private loginService: LoginServiceService, private http:HttpClient,
                private router:Router) { }
@@ -51,7 +53,10 @@ export class LoginComponent implements OnInit {
 
       },
         error => {
-        console.log("error");
+        if (error.status == 403){
+          this.loginError = "User Name/ Password Incorrect";
+        }
+
         }
     );
 
