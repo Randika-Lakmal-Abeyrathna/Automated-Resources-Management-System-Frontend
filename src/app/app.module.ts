@@ -8,22 +8,28 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import {HttpClientModule} from "@angular/common/http";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {LoginServiceService} from "./service/login-service.service";
+import {AuthRouteGuard} from "./guards/auth.route.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginServiceService,AuthRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

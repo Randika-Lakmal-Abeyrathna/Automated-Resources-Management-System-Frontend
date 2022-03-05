@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginServiceService} from "../../service/login-service.service";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {first} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +12,13 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
+ loginError ="";
+
   loginForm!: FormGroup;
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor( private formBuilder: FormBuilder, private loginService: LoginServiceService, private http:HttpClient,
+               private router:Router) {
+
+  }
 
   isFormSubmitted = false;
   ngOnInit(): void {
@@ -29,7 +38,30 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.log('Submit', this.loginForm.value);
+
+    const data = {
+      username: this.loginForm.value.nic,
+      password: this.loginForm.value.password,
+    }
+
+    this.loginService.login(data)
+      .pipe(first())
+      .subscribe(
+      (data:HttpResponse<any> )=> {
+        this.loginService.checkAccesstoken(data.headers.get('Authorization'));
+
+
+        return this.router.navigateByUrl("dashboard");
+      },
+        error => {
+        if (error.status == 403){
+          this.loginError = "User Name/ Password Incorrect";
+        }
+
+        }
+    );
+
+
   }
 
 }
