@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {LoginServiceService} from "./service/login-service.service";
 import {AuthRouteGuard} from "./guards/auth.route.guard";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {AuthRouteGuard} from "./guards/auth.route.guard";
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [LoginServiceService,AuthRouteGuard],
   bootstrap: [AppComponent]
