@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class LoginServiceService {
 
   userInfo:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   jwtHelper = new JwtHelperService();
-  constructor(private http:HttpClient, private router: Router) {
+  constructor(private http:HttpClient, private router: Router,private toast:ToastrService) {
     this.loadUserInfo();
 
   }
@@ -26,13 +27,20 @@ export class LoginServiceService {
       const accesstoken=localStorage.getItem('access_token');
 
       if (accesstoken){
-        const decryptedAccessToken = this.jwtHelper.decodeToken(accesstoken);
-        const userdata = {
-          access_token : accesstoken,
-          userid : decryptedAccessToken.sub
-        };
+        try {
+          const decryptedAccessToken = this.jwtHelper.decodeToken(accesstoken);
+          const userdata = {
+            access_token : accesstoken,
+            userid : decryptedAccessToken.sub
+          };
 
-        this.userInfo.next(userdata);
+          this.userInfo.next(userdata);
+        }catch(error){
+          localStorage.removeItem('access_token');
+          this.toast.error("Invalid Token","Error",{timeOut: 3000});
+        }
+
+
       }
     }
   }
