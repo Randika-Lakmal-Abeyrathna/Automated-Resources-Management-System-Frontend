@@ -4,6 +4,7 @@ import {LoginServiceService} from "../../service/login-service.service";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {first} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,11 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
- loginError ="";
 
   loginForm!: FormGroup;
   constructor( private formBuilder: FormBuilder, private loginService: LoginServiceService, private http:HttpClient,
-               private router:Router) {
+               private router:Router,
+               private toast:ToastrService) {
 
   }
 
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
       },
         error => {
         if (error.status == 403){
-          this.loginError = "User Name/ Password Incorrect";
+          this.toast.error("User Name/ Password Incorrect","Error",{timeOut: 3000})
         }
 
         }
