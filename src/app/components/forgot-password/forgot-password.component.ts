@@ -14,7 +14,6 @@ import {ToastrService} from "ngx-toastr";
 export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm!:FormGroup;
-  forgotError ="";
 
   constructor(private formBuilder:FormBuilder,
               private forgotPasswordService:ForgotPasswordService,
