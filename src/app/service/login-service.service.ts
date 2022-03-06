@@ -70,4 +70,14 @@ export class LoginServiceService {
     // return this.router.navigateByUrl("dashboard");
 
   }
+
+  logout(){
+    // setTimeout(() => {
+      localStorage.removeItem('access_token');
+      this.userInfo =new BehaviorSubject<any>(null);
+    // }, 2000);
+    return this.router.navigateByUrl("login");
+
+  }
+
 }
