@@ -5,6 +5,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {AuthRouteGuard} from "./guards/auth.route.guard";
+import {NotfoundComponent} from "./components/notfound/notfound.component";
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:"dashboard",component:DashboardComponent,
     canActivate:[AuthRouteGuard]
   },
-  {path:"",redirectTo:'/login',pathMatch:'full'}
+  {path:"",redirectTo:'/login',pathMatch:'full'},
+  {path:"**",component:NotfoundComponent}
 ];
 
 @NgModule({
