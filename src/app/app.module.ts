@@ -13,6 +13,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {LoginServiceService} from "./service/login-service.service";
 import {AuthRouteGuard} from "./guards/auth.route.guard";
 import {ToastrModule} from "ngx-toastr";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {ToastrModule} from "ngx-toastr";
     UserRegistrationComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
