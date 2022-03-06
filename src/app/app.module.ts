@@ -8,13 +8,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {LoginServiceService} from "./service/login-service.service";
 import {AuthRouteGuard} from "./guards/auth.route.guard";
 import {ToastrModule} from "ngx-toastr";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,11 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [LoginServiceService,AuthRouteGuard],
+  providers: [LoginServiceService,AuthRouteGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
