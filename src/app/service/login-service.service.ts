@@ -67,7 +67,16 @@ export class LoginServiceService {
 
     this.userInfo.next(userdata);
 
-    // return this.router.navigateByUrl("dashboard");
+    const user_role = decryptedAccessToken.authorities[0].authority;
+  console.log("user_role",user_role);
+    if (user_role == 'ROLE_ADMIN'){
+      return this.router.navigateByUrl("admin");
+    }else if(user_role == 'ROLE_SUPERADMIN'){
+      return this.router.navigateByUrl("superadmin");
+    }else{
+      return this.router.navigateByUrl("dashboard");
+    }
+
 
   }
 
