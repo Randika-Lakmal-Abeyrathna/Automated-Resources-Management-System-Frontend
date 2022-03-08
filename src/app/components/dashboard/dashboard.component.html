@@ -1,3 +1,120 @@
-<p>dashboard works!</p>
-
-<p>User ID - {{user.userid}}</p>
+<div class="container-fluid">
+  <h3 class="text-end">Welcome {{userDetails.firstName}} !</h3>
+  <h5 class="text-end">Teacher</h5>
+  <div class="row">
+    <div class="col col-md-8">
+      <div class="card">
+        <h5 class="card-header">Employee Details</h5>
+        <div class="card-body">
+          <div>
+            <ul class="nav nav-tabs">
+              <li class="nav-item" [className]="personalDetails ? 'active':' '">
+<!--                <a class="nav-link active" aria-current="page" href="#">Active</a>-->
+                <a class="nav-link"  data-bs-toggle="collapse" href="#personaldetails" role="button" aria-expanded="false" (click)="checkVisited('personaldetails')" aria-controls="personaldetails">
+                  Personal Details
+                </a>
+              </li>
+              <li class="nav-item" [className]="contactDetails ?'active':' '">
+                <a class="nav-link "  data-bs-toggle="collapse" href="#contactdetails" role="button" aria-expanded="false" (click)="checkVisited('contactdetails')" aria-controls="contactdetails">
+                  Contact Details
+                </a>
+              </li>
+              <li class="nav-item" [className]="teacherDetails ? 'active':' '">
+                <a class="nav-link "  data-bs-toggle="collapse" href="#teacherdetails" role="button" aria-expanded="false" (click)="checkVisited('teacherdetails')" aria-controls="teacherdetails">
+                  Teacher Details
+                </a>
+              </li>
+              <li class="nav-item" [className]="subjectDetails ? 'active':' '">
+                <a class="nav-link "  data-bs-toggle="collapse" href="#subjectdetails" role="button" aria-expanded="false" (click)="checkVisited('subjectdetails')" aria-controls="subjectdetails">
+                  Subject Details
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div  [className]="personalDetails ? 'collapse show':'collapse'" id="personaldetails">
+            <div class="card card-body">
+              <div class="row">
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Salutation</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.salutation}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">First Name</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.firstName}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Middle Name</label>
+                  <input type="text"  disabled class="form-control " value="{{userDetails.middleName}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Last Name</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.lastName}}">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Gender</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.gender}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Marital Status</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.maritalStatus}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Nic</label>
+                  <input type="text"  disabled class="form-control " value="{{userDetails.nic}}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div [className]="contactDetails?'collapse show':'collapse'" id="contactdetails">
+            <div class="card card-body">
+              <div class="row">
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Address No</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.addressNo}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Street 1</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.addressStreet1}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">Street 2</label>
+                  <input type="text"  disabled class="form-control " value="{{userDetails.addressStreet2}}">
+                </div>
+                <div class="col-md-3 ">
+                  <label class="form-label user-form__label">City</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.city}}">
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-4 ">
+                  <label class="form-label user-form__label">Contact Number 1</label>
+                  <input type="number" disabled class="form-control " value="{{userDetails.contactNumber1}}">
+                </div>
+                <div class="col-md-4 ">
+                  <label class="form-label user-form__label">Contact Number 2</label>
+                  <input type="number"  disabled class="form-control " value="{{userDetails.contactNumber2}}">
+                </div>
+                <div class="col-md-4 ">
+                  <label class="form-label user-form__label">Email</label>
+                  <input type="text" disabled class="form-control " value="{{userDetails.email}}">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-4">
+      <div class="card">
+        <h5 class="card-header">Request Details</h5>
+        <div class="card-body">
+          No Request Pending
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
