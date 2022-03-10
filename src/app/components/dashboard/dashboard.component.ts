@@ -44,15 +44,11 @@ export class DashboardComponent implements OnInit {
   }
   teacherSubjects:Array<string> =[];
 
-  teacherExperienceData ={
-    appointmentDate:'',
-    appointmentEndDate:'',
-    schoolName:'',
-    schoolType:'',
-    zonalName:''
-  }
-
   teacherExperienceDataArray:Array<any> =[];
+
+  allTeacherSubjectArray:Array<any> =[];
+  allTeacherDataArray:Array<any>=[];
+  schoolCarderDataArray:Array<any>=[];
 
   personalDetails =true;
   teacherDetails =false;
@@ -77,7 +73,6 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data:any )=> {
-          console.log(data.body);
             this.userDetails.firstName=data.body.firstName;
             this.userDetails.middleName=data.body.middleName;
             this.userDetails.lastName=data.body.lastName;
@@ -120,7 +115,6 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data:any)=>{
-          console.log("Teacher Data",data.body);
           this.teacherData.appointmentDate=data.body.appointmentdate;
             this.teacherData.schoolName=data.body.school.name;
             this.teacherData.schoolType=data.body.school.schoolType.type;
@@ -130,10 +124,14 @@ export class DashboardComponent implements OnInit {
             const sub = data.body.subjects[i]['name']+'  -  '+data.body.subjects[i]['description']
             this.teacherSubjects.push(sub);
           }
-          console.log("subject array",this.teacherSubjects);
-          console.log("teacherData",this.teacherData);
           this.teacherid =data.body.id;
           this.loadTeacherExperienceDetails(this.teacherid);
+
+          if (data.body.teacherType.type == 'principal'){
+            this.loadSchoolAllTeaches(data.body.school.idschool);
+            this.loadCarderDetails(data.body.school.idschool);
+          }
+
         },
         error=>{
           console.log(error);
@@ -147,26 +145,84 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data:any)=>{
-          console.log("Teacher Experiance",data.body);
 
           for (let i = 0; i < data.body.length; i++) {
             const exdata = data.body[i];
-            const experiance = this.teacherExperienceData;
-            experiance.appointmentEndDate=exdata['appointmentenddate'];
-            experiance.appointmentDate=exdata['appointntdate'];
-            experiance.schoolName=exdata['school']['name'];
-            experiance.schoolType=exdata['school']['schoolType']['type'];
-            experiance.zonalName =exdata['school']['zonal']['name'];
+            let teacherExperienceData ={
+              appointmentDate:exdata['appointntdate'],
+              appointmentEndDate:exdata['appointmentenddate'],
+              schoolName:exdata['school']['name'],
+              schoolType:exdata['school']['schoolType']['type'],
+              zonalName:exdata['school']['zonal']['name']
+            }
 
-            this.teacherExperienceDataArray.push(experiance);
+            this.teacherExperienceDataArray.push(teacherExperienceData);
           }
-
-          console.log("experiance data array", this.teacherExperienceDataArray);
 
         },
         error=>{
-
+            console.log(error);
         }
       );
   }
+
+  loadSchoolAllTeaches(schoolId:number){
+    this.teacherService.getAllTeachersFromSchool(schoolId)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          for (let i = 0; i < data.body.length; i++) {
+            const alldata = data.body[i];
+            let allTeacherData = {
+              teacherid:alldata['teacher']['id'],
+              name:alldata['teacher']['user']['firstName'] +' '+alldata['teacher']['user']['lastName'],
+              email:alldata['teacher']['user']['email'],
+              contactNumber:alldata['teacher']['user']['contactNumber1'],
+              appointmentDate:alldata['appointmentenddate']
+            }
+
+            this.allTeacherDataArray.push(allTeacherData);
+
+            for (let j = 0; j < alldata['teacher']['subjects']['length']; j++) {
+              const subject = alldata['teacher']['subjects'][j];
+              let allTeacherSubjectDetails ={
+                teacherId:alldata['teacher']['id'],
+                subject:subject['name']+' - ' +subject['description'],
+              }
+              this.allTeacherSubjectArray.push(allTeacherSubjectDetails);
+            }
+
+          }
+
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+  }
+
+  loadCarderDetails(schoolId:number){
+    this.teacherService.getCarderDetailsBySchool(schoolId)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          for (let i = 0; i < data.body.length; i++) {
+            const carder = data.body[i];
+            let carderData ={
+              limitation:carder['limitation'],
+              current:carder['current'],
+              subject:carder['subjects']['name'] +' - '+ carder['subjects']['description']
+            }
+
+            this.schoolCarderDataArray.push(carderData);
+
+          }
+
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+  }
+
 }

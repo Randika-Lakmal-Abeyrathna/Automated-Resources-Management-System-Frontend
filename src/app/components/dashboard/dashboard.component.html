@@ -118,7 +118,60 @@
     <div class="row">
       <div class="card">
         <h5 class="card-header">Staff Details</h5>
-        <div class="card-body"></div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+              <h5 class="card-title">All Staff</h5>
+              <table class="table">
+                <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Appointed Date</th>
+                <th>Subject</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let all of allTeacherDataArray">
+                  <td>{{all.name |uppercase}}</td>
+                  <td>{{all.email |uppercase}}</td>
+                  <td>{{all.contactNumber}}</td>
+                  <td>{{all.appointmentDate | date}}</td>
+                  <td>
+                    <div *ngFor="let subject of allTeacherSubjectArray">
+                      <span *ngIf="subject.teacherId == all.teacherid">
+                        {{subject.subject}}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+              <h5 class="card-title">School Carder</h5>
+              <table class="table">
+                <thead>
+                <th>Subject</th>
+                <th>Limitation</th>
+                <th>Current</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let carder of schoolCarderDataArray">
+                  <td>{{carder.subject |uppercase}}</td>
+                  <td>{{carder.limitation}}</td>
+                  <td>{{carder.current}}</td>
+                </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

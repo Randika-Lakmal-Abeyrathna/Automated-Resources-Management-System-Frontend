@@ -10,6 +10,9 @@ import {environment} from "../../environments/environment";
 export class TeacherService {
   private _getTeacherDataUrl=environment.baseUrl+"/api/teacher/find/";
   private _getTeacherExperienceUrl=environment.baseUrl+"/api/teacher/experience/";
+  private _getAllTeachersFromSchoolIdUrl = environment.baseUrl+"/api/teacher/experience/";
+  private _getCarderDetailsBySchoolIdUrl = environment.baseUrl+"/api/school/carder/";
+
   constructor(private http:HttpClient,private router: Router,private toast:ToastrService) { }
 
   getTeacherData(nic:string){
@@ -19,4 +22,13 @@ export class TeacherService {
   getTeacherExperience(id:number){
     return this.http.get(this._getTeacherExperienceUrl+id,{observe:'response' as 'body'});
   }
+
+  getAllTeachersFromSchool(schoolid:number){
+    return this.http.get(this._getAllTeachersFromSchoolIdUrl+schoolid,{observe:'response' as 'body'});
+  }
+
+  getCarderDetailsBySchool(schoolid:number){
+    return this.http.get(this._getCarderDetailsBySchoolIdUrl+schoolid,{observe:'response' as 'body'});
+  }
+
 }
