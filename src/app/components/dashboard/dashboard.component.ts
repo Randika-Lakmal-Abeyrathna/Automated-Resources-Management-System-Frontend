@@ -3,6 +3,7 @@ import {LoginServiceService} from "../../service/login-service.service";
 import {UserService} from "../../service/user.service";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
+import {TeacherService} from "../../service/teacher.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -32,18 +33,38 @@ export class DashboardComponent implements OnInit {
     maritalStatus:''
   }
 
-  personalDetails =true;
-  contactDetails =false;
-  teacherDetails =false;
-  subjectDetails =false;
+  teacherData={
+    appointmentDate:'',
+    schoolName:'',
+    schoolType:'',
+    zonalName:'',
+    teacherType:'',
 
-  constructor(private loginService:LoginServiceService,private userService:UserService) { }
+
+  }
+  teacherSubjects:Array<string> =[];
+
+  teacherExperienceData ={
+    appointmentDate:'',
+    appointmentEndDate:'',
+    schoolName:'',
+    schoolType:'',
+    zonalName:''
+  }
+
+  teacherExperienceDataArray:Array<any> =[];
+
+  personalDetails =true;
+  teacherDetails =false;
+
+  constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService) { }
 
   ngOnInit(): void {
     this.loginService.userInfo.subscribe(value => {
       if (value){
         this.user.userid = value.userid;
         this.loadUserData(this.user.userid);
+        this.loadTeacherDetails(this.user.userid);
       }
 
 
@@ -85,25 +106,67 @@ export class DashboardComponent implements OnInit {
     console.log(data);
     if(data == 'personaldetails'){
       this.personalDetails = true;
-      this.contactDetails=false;
       this.teacherDetails =false;
-      this.subjectDetails=false;
-    }else if(data == 'contactdetails'){
-      this.personalDetails = false;
-      this.contactDetails=true;
-      this.teacherDetails =false;
-      this.subjectDetails=false;
     }else if(data == 'teacherdetails'){
       this.personalDetails = false;
-      this.contactDetails=false;
       this.teacherDetails =true;
-      this.subjectDetails=false;
-    }else if(data == 'subjectdetails'){
-      this.personalDetails = false;
-      this.contactDetails=false;
-      this.teacherDetails =false;
-      this.subjectDetails=true;
     }
   }
 
+  teacherid:number =0;
+
+  loadTeacherDetails(userid:string){
+    this.teacherService.getTeacherData(userid)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          console.log("Teacher Data",data.body);
+          this.teacherData.appointmentDate=data.body.appointmentdate;
+            this.teacherData.schoolName=data.body.school.name;
+            this.teacherData.schoolType=data.body.school.schoolType.type;
+            this.teacherData.zonalName=data.body.school.zonal.name;
+            this.teacherData.teacherType=data.body.teacherType.type;
+          for (let i = 0; i < data.body.subjects.length; i++) {
+            const sub = data.body.subjects[i]['name']+'  -  '+data.body.subjects[i]['description']
+            this.teacherSubjects.push(sub);
+          }
+          console.log("subject array",this.teacherSubjects);
+          console.log("teacherData",this.teacherData);
+          this.teacherid =data.body.id;
+          this.loadTeacherExperienceDetails(this.teacherid);
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+
+  }
+
+  loadTeacherExperienceDetails(id:number){
+    this.teacherService.getTeacherExperience(id)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          console.log("Teacher Experiance",data.body);
+
+          for (let i = 0; i < data.body.length; i++) {
+            const exdata = data.body[i];
+            const experiance = this.teacherExperienceData;
+            experiance.appointmentEndDate=exdata['appointmentenddate'];
+            experiance.appointmentDate=exdata['appointntdate'];
+            experiance.schoolName=exdata['school']['name'];
+            experiance.schoolType=exdata['school']['schoolType']['type'];
+            experiance.zonalName =exdata['school']['zonal']['name'];
+
+            this.teacherExperienceDataArray.push(experiance);
+          }
+
+          console.log("experiance data array", this.teacherExperienceDataArray);
+
+        },
+        error=>{
+
+        }
+      );
+  }
 }

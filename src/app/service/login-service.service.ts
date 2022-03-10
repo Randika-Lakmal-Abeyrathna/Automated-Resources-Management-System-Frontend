@@ -4,13 +4,14 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServiceService {
 
-  private _loginUrl = 'http://localhost:8301/login';
+  private _loginUrl = environment.baseUrl+'/login';
 
   userInfo:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   jwtHelper = new JwtHelperService();

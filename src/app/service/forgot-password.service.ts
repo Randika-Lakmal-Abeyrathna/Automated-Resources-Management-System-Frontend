@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class ForgotPasswordService {
 
 
-  private _forgotPasswordUrl = 'http://localhost:8301/api/user/forgot';
+  private _forgotPasswordUrl = environment.baseUrl+'/api/user/forgot';
 
   constructor(private http:HttpClient) { }
 
