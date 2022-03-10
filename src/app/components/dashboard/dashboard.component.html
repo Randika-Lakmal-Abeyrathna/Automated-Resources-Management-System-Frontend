@@ -1,3 +1,129 @@
-<p>dashboard works!</p>
+<div class="container-fluid">
+  <h3 class="text-end">Welcome {{userDetails.firstName | titlecase}} !</h3>
+  <h5 class="text-end">{{teacherData.teacherType |uppercase}}</h5>
+  <div class="row">
+    <div class="col col-md-8">
+      <div class="card">
+        <h5 class="card-header">Employee Details</h5>
+        <div class="card-body">
+          <div>
+            <ul class="nav nav-tabs">
+              <li class="nav-item" [className]="personalDetails ? 'active':' '">
+<!--                <a class="nav-link active" aria-current="page" href="#">Active</a>-->
+                <a class="nav-link"  data-bs-toggle="collapse" href="#personaldetails" role="button" aria-expanded="false" (click)="checkVisited('personaldetails')" aria-controls="personaldetails">
+                  Personal Details
+                </a>
+              </li>
+              <li class="nav-item" [className]="teacherDetails ? 'active':' '">
+                <a class="nav-link "  data-bs-toggle="collapse" href="#teacherdetails" role="button" aria-expanded="false" (click)="checkVisited('teacherdetails')" aria-controls="teacherdetails">
+                  Work Experience
+                </a>
+              </li>
+            </ul>
+          </div>
+<!--          personal details start-->
+          <div  [className]="personalDetails ? 'collapse show':'collapse'" id="personaldetails">
+            <div class="card card-body">
+              <div class="row">
+                <div class="col-4">
+                  <img id="profilepic" src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" class="rounded float-left" alt="...">
+                </div>
+                <div class="col-8">
+                  <div class="row">
+                    <div>
+                      Name : {{userDetails.salutation | uppercase}}. {{userDetails.firstName | uppercase}} {{userDetails.middleName |uppercase}} {{userDetails.lastName |uppercase}}
+                      <hr>
+                      Gender : {{userDetails.gender | uppercase}}
+                      <hr>
+                      Marital Status : {{userDetails.maritalStatus | uppercase}}
+                      <hr>
+                      NIC : {{userDetails.nic | uppercase}}
+                      <hr>
+                      Address : {{userDetails.addressNo}} {{userDetails.addressStreet1}} {{userDetails.addressStreet2}} {{userDetails.city}}
+                      <hr>
+                      Contact Number 01 : {{userDetails.contactNumber1}}
+                      <hr>
+                      Contact Number 02 : {{userDetails.contactNumber2}}
+                      <hr>
+                      Email : {{userDetails.email}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--          personal details end-->
+<!--          Work Experience start-->
+          <div  [className]="teacherDetails ? 'collapse show':'collapse'" id="teacherdetails">
+            <div class="card card-body">
+              <h5 class="card-title">Current Work Place</h5>
+                      School : {{teacherData.schoolName |uppercase }}
+                      <hr>
+                      School Type : {{teacherData.schoolType |uppercase}}
+                      <hr>
+                      Appointment Date : {{teacherData.appointmentDate | date}}
+                      <hr>
 
-<p>User ID - {{user.userid}}</p>
+              Subjects : <span *ngFor="let subject of teacherSubjects ">{{subject | uppercase}}</span>
+
+            </div>
+            <br>
+            <div class="card card-body">
+              <h5 class="card-title">Work History</h5>
+
+              <table class="table">
+                <thead>
+                <th>School Name</th>
+                <th>School Type</th>
+                <th>Zonal</th>
+                <th>From</th>
+                <th>To</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let exp of teacherExperienceDataArray">
+                    <td>{{exp.schoolName |uppercase}}</td>
+                    <td>{{exp.schoolType |uppercase}}</td>
+                    <td>{{exp.zonalName |uppercase}}</td>
+                    <td>{{exp.appointmentDate | date}}</td>
+                    <td>{{exp.appointmentEndDate |date}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+<!--          Work Experience End-->
+      </div>
+    </div>
+    </div>
+    <div class="col col-md-4">
+      <div class="card clearfix">
+        <div class="card-header clearfix">
+          <h5 >Request Details</h5>
+          <div class="text-right">
+            <button class="btn btn-success float-end">New Request</button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          No Request Pending
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  Principle Area start-->
+
+  <div *ngIf="(teacherData.teacherType|uppercase) == 'PRINCIPAL'">
+    <div class="row">
+      <div class="card">
+        <h5 class="card-header">Staff Details</h5>
+        <div class="card-body"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--  Principle Area end-->
+
+</div>

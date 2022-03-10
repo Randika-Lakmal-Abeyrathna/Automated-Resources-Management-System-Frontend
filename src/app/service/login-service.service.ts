@@ -4,13 +4,14 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
 import {ToastrService} from "ngx-toastr";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServiceService {
 
-  private _loginUrl = 'http://localhost:8301/login';
+  private _loginUrl = environment.baseUrl+'/login';
 
   userInfo:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   jwtHelper = new JwtHelperService();
@@ -67,7 +68,16 @@ export class LoginServiceService {
 
     this.userInfo.next(userdata);
 
-    // return this.router.navigateByUrl("dashboard");
+    const user_role = decryptedAccessToken.authorities[0].authority;
+  console.log("user_role",user_role);
+    if (user_role == 'ROLE_ADMIN'){
+      return this.router.navigateByUrl("admin");
+    }else if(user_role == 'ROLE_SUPERADMIN'){
+      return this.router.navigateByUrl("superadmin");
+    }else{
+      return this.router.navigateByUrl("dashboard");
+    }
+
 
   }
 

@@ -23,6 +23,13 @@ export class AuthRouteGuard implements CanActivate{
           return true;
         }
 
+        if (state.url.indexOf("/admin") > -1){
+          return true;
+        }
+        if(state.url.indexOf("/superadmin") > -1){
+          return true;
+        }
+
         if (state.url.indexOf("/login") >-1){
           this.route.navigateByUrl('/dashboard');
           return false;
@@ -39,6 +46,14 @@ export class AuthRouteGuard implements CanActivate{
         return false;
       }
       if (state.url.indexOf("register") > -1){
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+      if (state.url.indexOf("admin") > -1){
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+      if (state.url.indexOf("superadmin") > -1){
         this.route.navigateByUrl("/login");
         return false;
       }

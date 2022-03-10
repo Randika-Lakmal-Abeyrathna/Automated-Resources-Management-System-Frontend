@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit {
       (data:HttpResponse<any> )=> {
         this.loginService.checkAccesstoken(data.headers.get('Authorization'));
 
-
-        return this.router.navigateByUrl("dashboard");
       },
         error => {
         if (error.status == 403){

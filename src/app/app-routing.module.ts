@@ -6,6 +6,8 @@ import {ForgotPasswordComponent} from "./components/forgot-password/forgot-passw
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {AuthRouteGuard} from "./guards/auth.route.guard";
 import {NotfoundComponent} from "./components/notfound/notfound.component";
+import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
+import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -18,6 +20,14 @@ const routes: Routes = [
     canActivate:[AuthRouteGuard]
   },
   {path:"dashboard",component:DashboardComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"admin",component:AdminDashboardComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"superadmin",component:SuperAdminDashboardComponent,
     canActivate:[AuthRouteGuard]
   },
   {path:"",redirectTo:'/login',pathMatch:'full'},

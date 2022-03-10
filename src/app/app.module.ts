@@ -16,6 +16,8 @@ import {ToastrModule} from "ngx-toastr";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { SuperAdminDashboardComponent } from './components/super-admin-dashboard/super-admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
     ForgotPasswordComponent,
     DashboardComponent,
     NavbarComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AdminDashboardComponent,
+    SuperAdminDashboardComponent
   ],
   imports: [
     BrowserModule,
