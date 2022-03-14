@@ -4,7 +4,14 @@
   <div class="row">
     <div class="col col-md-8">
       <div class="card">
-        <h5 class="card-header">Employee Details</h5>
+        <div class="card-header">
+          <h5 >Employee Details</h5>
+          <div class="text-right">
+            <button type="button" class="btn btn-primary  float-end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Edit  <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+        </div>
         <div class="card-body">
           <div>
             <ul class="nav nav-tabs">
@@ -101,7 +108,7 @@
         <div class="card-header clearfix">
           <h5 >Request Details</h5>
           <div class="text-right">
-            <button class="btn btn-success float-end">New Request</button>
+            <button class="btn btn-success float-end">New Request  <i class="bi bi-plus-square"></i></button>
           </div>
         </div>
 
@@ -178,5 +185,113 @@
 
 
   <!--  Principle Area end-->
+
+<!--  User Data Edit Modal start-->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update User Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+          <div class="modal-body">
+
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="salutation" class="form-label">Salutation</label>
+                  <select class="form-select" id="salutation" >
+                    <option>Choose...</option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Miss</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input  type="text" class="form-control" name="firstName"   id="firstName" value="{{userDetails.firstName | titlecase}}"/>
+                </div>
+                <div class="col-md-3">
+                  <label for="middleName" class="form-label">Middle Name</label>
+                  <input  type="text" class="form-control" id="middleName"  value="{{userDetails.middleName | titlecase}}" />
+                </div>
+                <div class="col-md-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input  type="text" class="form-control" id="lastName"  value="{{userDetails.lastName | titlecase}}" />
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="addressNo" class="form-label">Address No</label>
+                  <input  type="text" class="form-control" id="addressNo"   value="{{userDetails.addressNo | titlecase}}" />
+                </div>
+                <div class="col-md-3">
+                  <label for="addressStreet1" class="form-label">Street 1</label>
+                  <input  type="text" class="form-control" id="addressStreet1"  value="{{userDetails.addressStreet1 | titlecase}}" />
+                </div>
+                <div class="col-md-3">
+                  <label for="addressStreet2" class="form-label">Street 2</label>
+                  <input  type="text" class="form-control" id="addressStreet2"  value="{{userDetails.addressStreet2 | titlecase}}" />
+                </div>
+                <div class="col-md-3">
+                  <label for="city" class="form-label">City</label>
+                  <select class="form-select" id="City" >
+                    <option>Choose...</option>
+                    <option>Colombo</option>
+                    <option>Galle</option>
+                    <option>Kandy</option>
+                  </select>
+                </div>
+
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="contactNumber1" class="form-label">Contact Number 1</label>
+                  <input  type="tel" class="form-control" id="contactNumber1"  value="{{userDetails.contactNumber1 }}" />
+                </div>
+                <div class="col-md-3">
+                  <label for="contactNumber2" class="form-label">Contact Number 2</label>
+                  <input  type="tel" class="form-control" id="contactNumber2"  value="{{userDetails.contactNumber2 }}" />
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input  type="email" class="form-control" id="email"  value="{{userDetails.email }}" />
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-3">
+                  <label for="gender" class="form-label">Gender</label>
+                  <select class="form-select" id="gender" >
+                    <option >Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="maritalStatus" class="form-label">Marital Status</label>
+                  <select class="form-select" id="maritalStatus" >
+                    <option >Choose...</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Divorced</option>
+                  </select>
+                </div>
+              </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Update Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--  User Data Edit Modal End-->
+
 
 </div>

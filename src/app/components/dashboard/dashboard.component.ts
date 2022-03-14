@@ -4,6 +4,7 @@ import {UserService} from "../../service/user.service";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 import {TeacherService} from "../../service/teacher.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
   user = {
     userid:''
   }
+  updateUserForm!: FormGroup;
 
   userDetails = {
     firstName:'',
@@ -53,7 +55,8 @@ export class DashboardComponent implements OnInit {
   personalDetails =true;
   teacherDetails =false;
 
-  constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService) { }
+  constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginService.userInfo.subscribe(value => {
@@ -65,6 +68,10 @@ export class DashboardComponent implements OnInit {
 
 
     })
+
+    this.updateUserForm = this.formBuilder.group({
+
+    });
 
   }
 
@@ -223,6 +230,10 @@ export class DashboardComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  updateUser(){
+
   }
 
 }
