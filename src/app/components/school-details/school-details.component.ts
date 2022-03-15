@@ -12,7 +12,7 @@ import {FormBuilder} from "@angular/forms";
 })
 export class SchoolDetailsComponent implements OnInit {
 
-
+  data: string ='';
   user = {
     userid:''
   }

@@ -7,6 +7,10 @@
       <div class="card">
         <h5 class="card-header">Staff Details</h5>
         <div class="card-body">
+          <div>
+            <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+          </div>
+          <br>
           <table class="table">
             <thead>
             <th>Name</th>
@@ -16,7 +20,7 @@
             <th>Subject</th>
             </thead>
             <tbody>
-            <tr *ngFor="let all of allTeacherDataArray">
+            <tr *ngFor="let all of allTeacherDataArray | filter:data">
               <td>{{all.name |uppercase}}</td>
               <td>{{all.email |uppercase}}</td>
               <td>{{all.contactNumber}}</td>
