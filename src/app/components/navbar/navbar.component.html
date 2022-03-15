@@ -11,6 +11,19 @@
         <li *ngIf="userLogOut" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" href="/login" >Login</a>
         </li>
+      </ul>
+
+      <ul class="navbar-nav mr-auto" *ngIf="teacherData.teacherType== 'principal' && userLogedIn">
+        <li class="nav-item">
+          <a class="nav-link" href="#">School Details</a>
+        </li>
+        <li *ngIf="userLogedIn" class="nav-item">
+          <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mr-auto" *ngIf="teacherData.teacherType != 'principal' && userLogedIn">
+
         <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
