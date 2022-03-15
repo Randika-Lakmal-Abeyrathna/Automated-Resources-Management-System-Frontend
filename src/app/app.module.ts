@@ -18,6 +18,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SuperAdminDashboardComponent } from './components/super-admin-dashboard/super-admin-dashboard.component';
+import { SchoolDetailsComponent } from './components/school-details/school-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SuperAdminDashboardComponent } from './components/super-admin-dashboard
     NavbarComponent,
     NotfoundComponent,
     AdminDashboardComponent,
-    SuperAdminDashboardComponent
+    SuperAdminDashboardComponent,
+    SchoolDetailsComponent
   ],
   imports: [
     BrowserModule,

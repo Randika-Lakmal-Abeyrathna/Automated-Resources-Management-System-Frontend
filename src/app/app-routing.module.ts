@@ -8,6 +8,7 @@ import {AuthRouteGuard} from "./guards/auth.route.guard";
 import {NotfoundComponent} from "./components/notfound/notfound.component";
 import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
 import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
+import {SchoolDetailsComponent} from "./components/school-details/school-details.component";
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -28,6 +29,10 @@ const routes: Routes = [
   },
   {
     path:"superadmin",component:SuperAdminDashboardComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"schooldetail",component:SchoolDetailsComponent,
     canActivate:[AuthRouteGuard]
   },
   {path:"",redirectTo:'/login',pathMatch:'full'},
