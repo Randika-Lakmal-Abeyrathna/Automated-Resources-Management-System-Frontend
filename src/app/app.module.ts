@@ -19,6 +19,7 @@ import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SuperAdminDashboardComponent } from './components/super-admin-dashboard/super-admin-dashboard.component';
 import { SchoolDetailsComponent } from './components/school-details/school-details.component';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SchoolDetailsComponent } from './components/school-details/school-detai
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot()
