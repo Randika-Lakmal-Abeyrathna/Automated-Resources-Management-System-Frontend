@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="card">
+        <h5 class="card-header">Pending Approval Details</h5>
+        <div class="card-body">
+          <div>
+            <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+          </div>
+          <br>
+          <table class="table">
+            <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>NIC</th>
+            <th></th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let all of pendingApproveData | filter:data">
+              <td>{{all.name |uppercase}}</td>
+              <td>{{all.email |uppercase}}</td>
+              <td>{{all.nic}}</td>
+              <td><a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewData" (click)="viewData(all.id)">View <i class="bi bi-arrow-up-right-square"></i></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  </div>
+
+  <!--  User Data Edit Modal start-->
+  <div class="modal fade" id="viewData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Approve User Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label"><b>Salutation :</b> {{updateUserDetails.salutation | titlecase}}</label>
+
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>First Name :</b> {{updateUserDetails.firstName | titlecase}}</label>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>Middle Name :</b> {{updateUserDetails.middleName | titlecase}}</label>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>Last Name :</b> {{updateUserDetails.lastName | titlecase}}</label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label"><b>Address No :</b> {{updateUserDetails.addressNo | titlecase}}</label>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>Street 1 :</b> {{updateUserDetails.addressStreet1 | titlecase}}</label>
+              </div>
+              <div class="col-md-3">
+                <label  class="form-label"><b>Street 2 :</b> {{updateUserDetails.addressStreet2 | titlecase}}</label>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>City :</b>{{updateUserDetails.city | titlecase}}</label>
+              </div>
+
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-4">
+                <label  class="form-label"><b>Contact Number 1 : </b> {{updateUserDetails.contactNumber1 }}</label>
+              </div>
+              <div class="col-md-4">
+                <label  class="form-label"><b>Contact Number 2 : </b> {{updateUserDetails.contactNumber2 }}</label>
+              </div>
+              <div class="col-md-4">
+                <label  class="form-label"><b>Email : </b> {{updateUserDetails.email }}</label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label"><b>Gender :</b> {{updateUserDetails.gender}}</label>
+
+              </div>
+              <div class="col-md-3">
+                <label class="form-label"><b>Marital Status : </b> {{updateUserDetails.maritalStatus}}</label>
+
+              </div>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#reject" data-bs-dismiss="modal">Reject</button>
+            <a type="button" class="btn btn-primary" (click)="approve(updateUserDetails.id)" data-bs-dismiss="modal">Approve</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!--  User Data Edit Modal End-->
+<!--Reject Reason Model start-->
+  <div class="modal fade" id="reject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalToggleLabel2" >
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Reject Reason</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group green-border-focus">
+            <label for="rejectreason">Enter Reason :</label>
+            <textarea #reasonText class="form-control" id="rejectreason" rows="3" ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-bs-target="#viewData" data-bs-toggle="modal" data-bs-dismiss="modal">Back </button>
+          <a type="button" class="btn btn-success" (click)="reject(updateUserDetails.id,reasonText.value)" data-bs-dismiss="modal" >Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Reject Reason Model end-->
+
+</div>

@@ -20,6 +20,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { SuperAdminDashboardComponent } from './components/super-admin-dashboard/super-admin-dashboard.component';
 import { SchoolDetailsComponent } from './components/school-details/school-details.component';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { ApproveUserUpdateDetailsComponent } from './components/approve-user-update-details/approve-user-update-details.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     NotfoundComponent,
     AdminDashboardComponent,
     SuperAdminDashboardComponent,
-    SchoolDetailsComponent
+    SchoolDetailsComponent,
+    ApproveUserUpdateDetailsComponent
   ],
   imports: [
     BrowserModule,
