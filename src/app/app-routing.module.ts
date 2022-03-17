@@ -9,6 +9,9 @@ import {NotfoundComponent} from "./components/notfound/notfound.component";
 import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
 import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
 import {SchoolDetailsComponent} from "./components/school-details/school-details.component";
+import {
+  ApproveUserUpdateDetailsComponent
+} from "./components/approve-user-update-details/approve-user-update-details.component";
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -33,6 +36,10 @@ const routes: Routes = [
   },
   {
     path:"schooldetail",component:SchoolDetailsComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"teacherupdate",component:ApproveUserUpdateDetailsComponent,
     canActivate:[AuthRouteGuard]
   },
   {path:"",redirectTo:'/login',pathMatch:'full'},
