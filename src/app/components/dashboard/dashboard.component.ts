@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoginServiceService} from "../../service/login-service.service";
 import {UserService} from "../../service/user.service";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 import {TeacherService} from "../../service/teacher.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {CommonService} from "../../service/common.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +14,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  @ViewChild('closebutton') closebutton:any;
 
   user = {
     userid:''
@@ -55,8 +59,13 @@ export class DashboardComponent implements OnInit {
   personalDetails =true;
   teacherDetails =false;
 
+  genderDropDownList:any =[];
+  salutationDropDownList:any=[];
+  cityDropDownList:any=[];
+  maritalStatusDropDownList:any=[];
+
   constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,private commonService:CommonService,private toast:ToastrService) { }
 
   ngOnInit(): void {
     this.loginService.userInfo.subscribe(value => {
@@ -72,6 +81,95 @@ export class DashboardComponent implements OnInit {
     this.updateUserForm = this.formBuilder.group({
 
     });
+
+// Gender DropDown start
+    this.commonService.getGender().subscribe(
+      (data:any )=> {
+        console.log("gender",data.body);
+        for (let i = 0; i < data.body.length; i++) {
+          const g = data.body[i];
+          const gender = {
+            id:g.idgender,
+            name:g.gender
+          }
+          this.genderDropDownList.push(gender);
+        }
+      },
+      error => {
+        if (error.status == 403){
+
+        }
+
+      }
+    );
+    // Gender DropDown end
+
+    // City DropDown start
+    this.commonService.getAllCity().subscribe(
+      (data:any )=> {
+        console.log("city",data.body);
+        for (let i = 0; i < data.body.length; i++) {
+          const c = data.body[i];
+          const city = {
+            id:c.idcity,
+            city:c.name
+          }
+          this.cityDropDownList.push(city);
+        }
+      },
+      error => {
+        if (error.status == 403){
+
+        }
+
+      }
+    );
+    // City DropDown end
+
+    // Salutation DropDown start
+    this.commonService.getAllSalutation().subscribe(
+      (data:any )=> {
+        console.log("Salutation",data.body);
+        for (let i = 0; i < data.body.length; i++) {
+          const s = data.body[i];
+          const salutation = {
+            id:s.idsalutation,
+            salutation:s.salutation
+          }
+          this.salutationDropDownList.push(salutation);
+        }
+      },
+      error => {
+        if (error.status == 403){
+
+        }
+
+      }
+    );
+    // Salutation DropDown end
+
+    // MaritalStatus DropDown start
+    this.commonService.getAllMaritalStatus().subscribe(
+      (data:any )=> {
+        console.log("MaritalStatus",data.body);
+        for (let i = 0; i < data.body.length; i++) {
+          const m = data.body[i];
+          const maritalStatus = {
+            id:m.id,
+            status:m.status
+          }
+
+          this.maritalStatusDropDownList.push(maritalStatus);
+        }
+      },
+      error => {
+        if (error.status == 403){
+
+        }
+
+      }
+    );
+    // MaritalStatus DropDown end
 
   }
 
@@ -170,8 +268,43 @@ export class DashboardComponent implements OnInit {
 
 
 
-  updateUser(){
+  updateUserRequest(data:any){
+    data.userid = this.user.userid;
 
+    let is_valid = true;
+
+    if (data.salutation == null || data.salutation ==''){
+      is_valid= false;
+      this.toast.error("Salutation cannot be empty","Error",{timeOut: 3000})
+    }
+    if (data.gender == null || data.gender ==''){
+      is_valid= false;
+      this.toast.error("Gender cannot be empty","Error",{timeOut: 3000})
+    }
+    if (data.maritalstatus == null || data.maritalstatus ==''){
+      is_valid= false;
+      this.toast.error("Marital Status cannot be empty","Error",{timeOut: 3000})
+    }
+    if (data.city == null || data.city ==''){
+      is_valid= false;
+      this.toast.error("City cannot be empty","Error",{timeOut: 3000})
+    }
+
+    if (is_valid){
+      this.userService.requestUpdateUser(data)
+        .pipe(first())
+        .subscribe(
+          (data:any)=>{
+            this.toast.success("Update Request Created","Success",{timeOut: 3000})
+            this.closebutton.nativeElement.click();
+
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+
+    }
   }
 
 }

@@ -21,6 +21,7 @@ import { SuperAdminDashboardComponent } from './components/super-admin-dashboard
 import { SchoolDetailsComponent } from './components/school-details/school-details.component';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { ApproveUserUpdateDetailsComponent } from './components/approve-user-update-details/approve-user-update-details.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ApproveUserUpdateDetailsComponent } from './components/approve-user-upd
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgSelectModule,
     ToastrModule.forRoot()
   ],
   providers: [LoginServiceService,AuthRouteGuard,{
