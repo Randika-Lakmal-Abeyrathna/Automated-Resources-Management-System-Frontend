@@ -113,7 +113,74 @@
         </div>
 
         <div class="card-body">
-          No Request Pending
+
+<!--          update Request details start-->
+          <div class="card-body">
+            <h6 class="card-header">Update Request</h6>
+
+            <table class="table">
+              <thead>
+              <th>Request Id</th>
+              <th>Status</th>
+              <th>Comment</th>
+              <th></th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let req of updateRequestList">
+                <td>{{req.id}}</td>
+                <td>{{req.status}}</td>
+                <td>{{req.comment}}</td>
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" attr.data-bs-target="#confirm{{req.id}}">
+                  <i class="bi bi-trash3-fill"></i>
+                </button></td>
+                <!--          update Request Delete Confirm box start-->
+
+                <div class="modal fade"  attr.id="confirm{{req.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" >Delete Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Request will be deleted.
+                        <h5>Are you sure ?</h5>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteUserUpdateRequest(req.id)">Delete <i class="bi bi-trash3-fill"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--          update Request Delete Confirm box end-->
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--          update Request details end-->
+
+
+
+
+          <!--          Transfer Request details start-->
+          <div class="card-body">
+            <h6 class="card-header">Transfer Request</h6>
+
+            <table class="table">
+              <thead>
+              <th>Request Id</th>
+              <th>Status</th>
+              <th></th>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+          <!--          Transfer Request details end-->
+
         </div>
       </div>
     </div>
