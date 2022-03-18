@@ -125,94 +125,83 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Update User Data</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" #closebutton  data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+        <form #updateForm="ngForm" (ngSubmit)="updateUserRequest(updateForm.value)">
           <div class="modal-body">
 
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="salutation" class="form-label">Salutation</label>
-                  <select class="form-select" id="salutation" >
-                    <option>Choose...</option>
-                    <option>Mr</option>
-                    <option>Mrs</option>
-                    <option>Miss</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label for="firstName" class="form-label">First Name</label>
-                  <input  type="text" class="form-control" name="firstName"   id="firstName" value="{{userDetails.firstName | titlecase}}"/>
-                </div>
-                <div class="col-md-3">
-                  <label for="middleName" class="form-label">Middle Name</label>
-                  <input  type="text" class="form-control" id="middleName"  value="{{userDetails.middleName | titlecase}}" />
-                </div>
-                <div class="col-md-3">
-                  <label for="lastName" class="form-label">Last Name</label>
-                  <input  type="text" class="form-control" id="lastName"  value="{{userDetails.lastName | titlecase}}" />
-                </div>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label">Salutation</label>
+                <ng-select ngModel="{{userDetails.salutation | titlecase}}" name ="salutation" required >
+                  <ng-option *ngFor="let s of salutationDropDownList" [value]="s.salutation">{{s.salutation | titlecase}}</ng-option>
+                </ng-select>
               </div>
-              <hr>
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="addressNo" class="form-label">Address No</label>
-                  <input  type="text" class="form-control" id="addressNo"   value="{{userDetails.addressNo | titlecase}}" />
-                </div>
-                <div class="col-md-3">
-                  <label for="addressStreet1" class="form-label">Street 1</label>
-                  <input  type="text" class="form-control" id="addressStreet1"  value="{{userDetails.addressStreet1 | titlecase}}" />
-                </div>
-                <div class="col-md-3">
-                  <label for="addressStreet2" class="form-label">Street 2</label>
-                  <input  type="text" class="form-control" id="addressStreet2"  value="{{userDetails.addressStreet2 | titlecase}}" />
-                </div>
-                <div class="col-md-3">
-                  <label for="city" class="form-label">City</label>
-                  <select class="form-select" id="City" >
-                    <option>Choose...</option>
-                    <option>Colombo</option>
-                    <option>Galle</option>
-                    <option>Kandy</option>
-                  </select>
-                </div>
+              <div class="col-md-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.firstName}}" name="firstName"   id="firstName" value="{{userDetails.firstName | titlecase}}"/>
+              </div>
+              <div class="col-md-3">
+                <label for="middleName" class="form-label">Middle Name</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.middleName}}" id="middleName" name="middleName"  value="{{userDetails.middleName | titlecase}}" />
+              </div>
+              <div class="col-md-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.lastName }}" id="lastName" name="lastName"  value="{{userDetails.lastName | titlecase}}" />
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <label for="addressNo" class="form-label">Address No</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.addressNo}}" id="addressNo" name="addressNo"   value="{{userDetails.addressNo | titlecase}}" />
+              </div>
+              <div class="col-md-3">
+                <label for="addressStreet1" class="form-label">Street 1</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.addressStreet1}}" id="addressStreet1" name="addressStreet1"  value="{{userDetails.addressStreet1 | titlecase}}" />
+              </div>
+              <div class="col-md-3">
+                <label for="addressStreet2" class="form-label">Street 2</label>
+                <input  type="text" class="form-control" ngModel="{{userDetails.addressStreet2}}" id="addressStreet2" name="addressStreet2"  value="{{userDetails.addressStreet2 | titlecase}}" />
+              </div>
+              <div class="col-md-3">
+                <label  class="form-label">City</label>
+                <ng-select ngModel="{{userDetails.city | titlecase}}" name ="city"  >
+                  <ng-option *ngFor="let c of cityDropDownList" [value]="c.city">{{c.city | titlecase}}</ng-option>
+                </ng-select>
+              </div>
 
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <label for="contactNumber1" class="form-label">Contact Number 1</label>
+                <input  type="number" class="form-control" ngModel="{{userDetails.contactNumber1}}" id="contactNumber1" name="contactNumber1"  value="{{userDetails.contactNumber1 }}" />
               </div>
-              <hr>
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="contactNumber1" class="form-label">Contact Number 1</label>
-                  <input  type="tel" class="form-control" id="contactNumber1"  value="{{userDetails.contactNumber1 }}" />
-                </div>
-                <div class="col-md-3">
-                  <label for="contactNumber2" class="form-label">Contact Number 2</label>
-                  <input  type="tel" class="form-control" id="contactNumber2"  value="{{userDetails.contactNumber2 }}" />
-                </div>
-                <div class="col-md-6">
-                  <label for="email" class="form-label">Email</label>
-                  <input  type="email" class="form-control" id="email"  value="{{userDetails.email }}" />
-                </div>
+              <div class="col-md-3">
+                <label for="contactNumber2" class="form-label">Contact Number 2</label>
+                <input  type="number" class="form-control" ngModel="{{userDetails.contactNumber2}}" id="contactNumber2" name="contactNumber2" value="{{userDetails.contactNumber2 }}" />
               </div>
-              <hr>
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="gender" class="form-label">Gender</label>
-                  <select class="form-select" id="gender" >
-                    <option >Choose...</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label for="maritalStatus" class="form-label">Marital Status</label>
-                  <select class="form-select" id="maritalStatus" >
-                    <option >Choose...</option>
-                    <option>Single</option>
-                    <option>Married</option>
-                    <option>Divorced</option>
-                  </select>
-                </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input  type="email" class="form-control" ngModel="{{userDetails.email}}" id="email" name="email"  value="{{userDetails.email }}" />
               </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3">
+                <label  class="form-label">Gender</label>
+                <ng-select ngModel="{{userDetails.gender | titlecase}}" name ="gender"  >
+                  <ng-option *ngFor="let g of genderDropDownList" [value]="g.name">{{g.name | titlecase}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="col-md-3">
+                <label  class="form-label">Marital Status</label>
+                <ng-select ngModel="{{userDetails.maritalStatus | titlecase}}" name ="maritalstatus"  >
+                  <ng-option *ngFor="let m of maritalStatusDropDownList" [value]="m.status">{{m.status | titlecase}}</ng-option>
+                </ng-select>
+              </div>
+            </div>
 
 
           </div>
