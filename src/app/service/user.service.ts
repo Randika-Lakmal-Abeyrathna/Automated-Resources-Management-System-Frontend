@@ -10,7 +10,9 @@ import {environment} from "../../environments/environment";
 export class UserService {
 
   private _getUserDataUrl=environment.baseUrl+"/api/user/find/";
-  private _requestUpdateUserUrl = environment.baseUrl+"/api/updateuser/request"
+  private _requestUpdateUserUrl = environment.baseUrl+"/api/updateuser/request";
+  private _getUserUpdateRequestByUserUrl = environment.baseUrl+"/api/updateuser/find/user/";
+  private _deleteUpdateUserRequestUrl =environment.baseUrl+"/api/updateuser/";
 
   constructor(private http:HttpClient, private router: Router,private toast:ToastrService) { }
 
@@ -20,5 +22,13 @@ export class UserService {
 
   requestUpdateUser(data:any){
     return this.http.put<any>(this._requestUpdateUserUrl,data,{observe:'response' as 'body'});
+  }
+
+  getUserUpdateRequestByUser(nic:string){
+    return this.http.get(this._getUserUpdateRequestByUserUrl+nic,{observe:'response' as 'body'});
+  }
+
+  deleteUserUpdateRequest(id:number){
+    return this.http.delete(this._deleteUpdateUserRequestUrl+id,{observe:'response' as 'body'});
   }
 }

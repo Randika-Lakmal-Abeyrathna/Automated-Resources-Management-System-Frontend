@@ -64,6 +64,8 @@ export class DashboardComponent implements OnInit {
   cityDropDownList:any=[];
   maritalStatusDropDownList:any=[];
 
+  updateRequestList:any =[];
+
   constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService,
               private formBuilder: FormBuilder,private commonService:CommonService,private toast:ToastrService) { }
 
@@ -73,6 +75,7 @@ export class DashboardComponent implements OnInit {
         this.user.userid = value.userid;
         this.loadUserData(this.user.userid);
         this.loadTeacherDetails(this.user.userid);
+        this.getUpdateRequestForUser(this.user.userid);
       }
 
 
@@ -305,6 +308,59 @@ export class DashboardComponent implements OnInit {
         );
 
     }
+  }
+
+  getUpdateRequestForUser(userid:string){
+    this.userService.getUserUpdateRequestByUser(userid)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+    console.log("All User requests",data.body);
+          for (let i = 0; i < data.body.length; i++) {
+            const request = data.body[i];
+
+            let statusId = request.status;
+            let status = '';
+
+            if (statusId == 0){
+              status="Pending";
+            }else if(statusId ==1){
+              status ="Approved";
+            }else {
+              status="Rejected";
+            }
+
+
+            let updateRequest ={
+              id:request.id,
+              status:status,
+              comment:request.comment
+            }
+
+            this.updateRequestList.push(updateRequest);
+          }
+
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+  }
+
+  deleteUserUpdateRequest(id:number){
+    this.userService.deleteUserUpdateRequest(id)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          this.toast.success("Request Deleted","Success",{timeOut: 3000});
+          setTimeout(()=>{
+            return window.location.reload();
+          }, 1000);
+        },
+        error=>{
+          console.log(error);
+        }
+      );
   }
 
 }
