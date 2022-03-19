@@ -32,7 +32,8 @@ export class LoginServiceService {
           const decryptedAccessToken = this.jwtHelper.decodeToken(accesstoken);
           const userdata = {
             access_token : accesstoken,
-            userid : decryptedAccessToken.sub
+            userid : decryptedAccessToken.sub,
+            user_role:decryptedAccessToken.authorities[0].authority
           };
 
           this.userInfo.next(userdata);
@@ -63,7 +64,8 @@ export class LoginServiceService {
 
     const userdata = {
       access_token : accesstoken,
-      userid : decryptedAccessToken.sub
+      userid : decryptedAccessToken.sub,
+      user_role:decryptedAccessToken.authorities[0].authority
     };
 
     this.userInfo.next(userdata);
@@ -74,6 +76,8 @@ export class LoginServiceService {
       return this.router.navigateByUrl("admin");
     }else if(user_role == 'ROLE_SUPERADMIN'){
       return this.router.navigateByUrl("superadmin");
+    }else if(user_role == 'ROLE_DATAENTRY'){
+      return this.router.navigateByUrl("dataentry");
     }else{
       return this.router.navigateByUrl("dashboard");
     }
