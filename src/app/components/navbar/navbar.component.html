@@ -1,7 +1,7 @@
 <div class="container-fluid">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Resource Management System</a>
+    <a class="navbar-brand" href="#">Resource & Request Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav mr-auto" *ngIf="teacherData.teacherType== 'principal' && userLogedIn">
+      <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='user' && teacherData.teacherType== 'principal' && userLogedIn">
         <li class="nav-item">
           <a class="nav-link" href="/teacherupdate">Update Teacher</a>
         </li>
@@ -25,13 +25,22 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav mr-auto" *ngIf="teacherData.teacherType != 'principal' && userLogedIn">
+      <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='user' && teacherData.teacherType != 'principal' && userLogedIn">
 
         <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
       </ul>
 
+
+      <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='dataentry' && userLogedIn">
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Create User</a>
+        </li>
+        <li *ngIf="userLogedIn" class="nav-item">
+          <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
+        </li>
+      </ul>
     </div>
   </nav>
 

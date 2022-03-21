@@ -16,35 +16,61 @@ export class AuthRouteGuard implements CanActivate{
     console.log("userData" , userData);
     if (userData && userData.userid){
       console.log("url",state.url);
-        if (state.url.indexOf("/dashboard") > -1){
+        if (state.url.indexOf("/dashboard") > -1 && userData.user_role=='ROLE_USER'){
           return true;
         }
-        if (state.url.indexOf("/register") > -1){
-          return true;
-        }
-
-        if (state.url.indexOf("/admin") > -1){
-          return true;
-        }
-        if(state.url.indexOf("/superadmin") > -1){
-          return true;
-        }
-        if (state.url.indexOf("/schooldetail") > -1){
+        if (state.url.indexOf("/register") > -1 && userData.user_role=='ROLE_DATAENTRY'){
           return true;
         }
 
-      if (state.url.indexOf("/teacherupdate") > -1){
+        if (state.url.indexOf("/admin") > -1 && userData.user_role=='ROLE_ADMIN'){
+          return true;
+        }
+        if(state.url.indexOf("/superadmin") > -1 && userData.user_role=='ROLE_SUPERADMIN'){
+          return true;
+        }
+      if(state.url.indexOf("/dataentry") > -1 && userData.user_role=='ROLE_DATAENTRY'){
+        return true;
+      }
+        if (state.url.indexOf("/schooldetail") > -1 && userData.user_role=='ROLE_USER'){
+          return true;
+        }
+
+      if (state.url.indexOf("/teacherupdate") > -1 && userData.user_role=='ROLE_USER'){
         return true;
       }
 
         if (state.url.indexOf("/login") >-1){
-          this.route.navigateByUrl('/dashboard');
-          return false;
+          if (userData.user_role=='ROLE_SUPERADMIN'){
+            this.route.navigateByUrl('/superadmin');
+            return false;
+          }else if(userData.user_role=='ROLE_DATAENTRY'){
+            this.route.navigateByUrl('/dataentry');
+            return false;
+          }else if(userData.user_role=='ROLE_ADMIN'){
+            this.route.navigateByUrl('/admin');
+            return false;
+          }else {
+            this.route.navigateByUrl('/dashboard');
+            return false;
+          }
+
         }
 
         if (state.url.indexOf("/forgot") > -1){
-          this.route.navigateByUrl("/dashboard");
-          return false;
+          if (userData.user_role=='ROLE_SUPERADMIN'){
+            this.route.navigateByUrl('/superadmin');
+            return false;
+          }else if(userData.user_role=='ROLE_DATAENTRY'){
+            this.route.navigateByUrl('/dataentry');
+            return false;
+          }else if(userData.user_role=='ROLE_ADMIN'){
+            this.route.navigateByUrl('/admin');
+            return false;
+          }else {
+            this.route.navigateByUrl('/dashboard');
+            return false;
+          }
         }
 
     }else{
@@ -65,6 +91,10 @@ export class AuthRouteGuard implements CanActivate{
         return false;
       }
 
+      if (state.url.indexOf("dataentry") > -1){
+        this.route.navigateByUrl("/login");
+        return false;
+      }
       if (state.url.indexOf("schooldetail") > -1){
         this.route.navigateByUrl("/login");
         return false;
