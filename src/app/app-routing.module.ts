@@ -9,10 +9,11 @@ import {NotfoundComponent} from "./components/notfound/notfound.component";
 import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
 import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
 import {SchoolDetailsComponent} from "./components/school-details/school-details.component";
-import {
-  ApproveUserUpdateDetailsComponent
-} from "./components/approve-user-update-details/approve-user-update-details.component";
+import {ApproveUserUpdateDetailsComponent} from "./components/approve-user-update-details/approve-user-update-details.component";
+import {TeacherRegistrationComponent} from './components/teacher-registration/teacher-registration.component';
+import {ApproveUserUpdateDetailsComponent} from "./components/approve-user-update-details/approve-user-update-details.component";
 import {DataentryDashboardComponent} from "./components/dataentry-dashboard/dataentry-dashboard.component";
+
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -44,9 +45,15 @@ const routes: Routes = [
     canActivate:[AuthRouteGuard]
   },
   {
+      path:"teacherRegistration",component:TeacherRegistrationComponent,
+      canActivate:[AuthRouteGuard]
+    },
+  {
+
     path:"dataentry",component:DataentryDashboardComponent,
     canActivate:[AuthRouteGuard]
   },
+
   {path:"",redirectTo:'/login',pathMatch:'full'},
   {path:"**",component:NotfoundComponent}
 ];
