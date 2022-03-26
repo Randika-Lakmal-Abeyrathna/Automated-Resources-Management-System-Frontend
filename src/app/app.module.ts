@@ -22,6 +22,7 @@ import { SchoolDetailsComponent } from './components/school-details/school-detai
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { ApproveUserUpdateDetailsComponent } from './components/approve-user-update-details/approve-user-update-details.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { TeacherRegistrationComponent } from './components/teacher-registration/teacher-registration.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     AdminDashboardComponent,
     SuperAdminDashboardComponent,
     SchoolDetailsComponent,
-    ApproveUserUpdateDetailsComponent
+    ApproveUserUpdateDetailsComponent,
+    TeacherRegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -9,9 +9,8 @@ import {NotfoundComponent} from "./components/notfound/notfound.component";
 import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
 import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
 import {SchoolDetailsComponent} from "./components/school-details/school-details.component";
-import {
-  ApproveUserUpdateDetailsComponent
-} from "./components/approve-user-update-details/approve-user-update-details.component";
+import {ApproveUserUpdateDetailsComponent} from "./components/approve-user-update-details/approve-user-update-details.component";
+import {TeacherRegistrationComponent} from './components/teacher-registration/teacher-registration.component';
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -42,6 +41,10 @@ const routes: Routes = [
     path:"teacherupdate",component:ApproveUserUpdateDetailsComponent,
     canActivate:[AuthRouteGuard]
   },
+  {
+      path:"teacherRegistration",component:TeacherRegistrationComponent,
+      canActivate:[AuthRouteGuard]
+    },
   {path:"",redirectTo:'/login',pathMatch:'full'},
   {path:"**",component:NotfoundComponent}
 ];
