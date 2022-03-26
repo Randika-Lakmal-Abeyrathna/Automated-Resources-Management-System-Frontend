@@ -13,6 +13,8 @@ export class UserService {
   private _requestUpdateUserUrl = environment.baseUrl+"/api/updateuser/request";
   private _getUserUpdateRequestByUserUrl = environment.baseUrl+"/api/updateuser/find/user/";
   private _deleteUpdateUserRequestUrl =environment.baseUrl+"/api/updateuser/";
+  private _getAllLockedUsersUrl =environment.baseUrl+"/api/user/lock/all";
+  private _unlockUserUrl =environment.baseUrl+"/api/user/unlock/";
 
   constructor(private http:HttpClient, private router: Router,private toast:ToastrService) { }
 
@@ -31,4 +33,13 @@ export class UserService {
   deleteUserUpdateRequest(id:number){
     return this.http.delete(this._deleteUpdateUserRequestUrl+id,{observe:'response' as 'body'});
   }
+
+  getAllLockedUsers(){
+    return this.http.get(this._getAllLockedUsersUrl,{observe:'response' as 'body'});
+  }
+
+  unlockUser(nic:string){
+    return this.http.get(this._unlockUserUrl+nic,{observe:'response' as 'body'});
+  }
+
 }

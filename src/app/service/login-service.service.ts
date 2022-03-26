@@ -12,6 +12,8 @@ import {environment} from "../../environments/environment";
 export class LoginServiceService {
 
   private _loginUrl = environment.baseUrl+'/login';
+  private _lockUserUrl = environment.baseUrl+'/api/user/lock/';
+  private _isUserUnlockUrl = environment.baseUrl+'/api/user/isLock/';
 
   userInfo:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   jwtHelper = new JwtHelperService();
@@ -32,7 +34,8 @@ export class LoginServiceService {
           const decryptedAccessToken = this.jwtHelper.decodeToken(accesstoken);
           const userdata = {
             access_token : accesstoken,
-            userid : decryptedAccessToken.sub
+            userid : decryptedAccessToken.sub,
+            user_role:decryptedAccessToken.authorities[0].authority
           };
 
           this.userInfo.next(userdata);
@@ -63,7 +66,8 @@ export class LoginServiceService {
 
     const userdata = {
       access_token : accesstoken,
-      userid : decryptedAccessToken.sub
+      userid : decryptedAccessToken.sub,
+      user_role:decryptedAccessToken.authorities[0].authority
     };
 
     this.userInfo.next(userdata);
@@ -74,6 +78,8 @@ export class LoginServiceService {
       return this.router.navigateByUrl("admin");
     }else if(user_role == 'ROLE_SUPERADMIN'){
       return this.router.navigateByUrl("superadmin");
+    }else if(user_role == 'ROLE_DATAENTRY'){
+      return this.router.navigateByUrl("dataentry");
     }else{
       return this.router.navigateByUrl("dashboard");
     }
@@ -88,6 +94,14 @@ export class LoginServiceService {
     // }, 2000);
     return this.router.navigateByUrl("login");
 
+  }
+
+  lockUser(nic:string){
+    return this.http.get(this._lockUserUrl+nic,{observe:'response' as 'body'});
+  }
+
+  isUserUnlock(nic:string){
+    return this.http.get(this._isUserUnlockUrl+nic,{observe:'response' as 'body'});
   }
 
 }
