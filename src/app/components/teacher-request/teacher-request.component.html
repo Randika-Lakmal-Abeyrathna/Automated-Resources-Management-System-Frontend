@@ -1,0 +1,31 @@
+<div class="container mt-5 p-4 teacherRequest-form">
+  <h4 class="text-left mb-4">Transfer Request</h4>
+  <form #requestForm="ngForm" (ngSubmit)="submitRequest(requestForm.value)" class="row g-3">
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacherRequest-form__label">Province</label>
+      <ng-select ngModel="{{request.provinceId}}" name ="provinceId" required >
+        <ng-option *ngFor="let p of provinceList" [value]="p.id">{{p.name | titlecase}}</ng-option>
+      </ng-select>
+      <!-- <input type="text" ngModel="{{request.provinceId}}" id="provinceId" name="provinceId" class="form-control teacherRequest-form__input"  placeholder="Enter Province"/> -->
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacherRequest-form__label">School Name</label>
+      <ng-select ngModel="{{request.schoolId}}" name ="schoolId" required >
+        <ng-option *ngFor="let s of schoolList" [value]="s.id">{{s.name | titlecase}}</ng-option>
+      </ng-select>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacherRequest-form__label">Comment</label>
+      <input type="text" ngModel="{{request.comment}}" id="comment" name="comment" class="form-control teacherRequest-form__input">
+    </div>
+
+    <div class="col-12 mt-4">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="reset" class="btn btn-secondary ms-2">Cancel</button>
+    </div>
+
+  </form>
+</div>
