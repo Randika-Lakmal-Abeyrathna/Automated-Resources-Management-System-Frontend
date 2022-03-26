@@ -17,8 +17,8 @@ export class TeacherService {
   private _approveUserUpdateDetailsUrl = environment.baseUrl+"/api/updateuser/update/";
   private _rejectUserUpdateDetailsUrl = environment.baseUrl+"/api/updateuser/update/"
   private _addTeacherDetailsUrl = environment.baseUrl+"/api/teacher/add/"
-  private _rejectUserUpdateDetailsUrl = environment.baseUrl+"/api/updateuser/update/";
   private _getAllTeachersUrl = environment.baseUrl+"/api/teacher/all";
+  private _addTeacherRequestUrl = environment.baseUrl+"/api/teacher/teacherTransfer/add";
 
 
   constructor(private http:HttpClient,private router: Router,private toast:ToastrService) { }
@@ -60,11 +60,12 @@ export class TeacherService {
     return this.http.post(this._addTeacherDetailsUrl,data,{observe:'response' as 'body'});
   }
 
+  requestTeacherRequest(data:any){
+    return this.http.post(this._addTeacherRequestUrl,data,{observe:'response' as 'body'});
+  }
+
   getAllTeachers(){
     return this.http.get(this._getAllTeachersUrl,{observe:'response' as 'body'});
   }
-
-
-
 
 }

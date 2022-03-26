@@ -24,6 +24,7 @@ import { ApproveUserUpdateDetailsComponent } from './components/approve-user-upd
 import {NgSelectModule} from "@ng-select/ng-select";
 import { TeacherRegistrationComponent } from './components/teacher-registration/teacher-registration.component';
 import { DataentryDashboardComponent } from './components/dataentry-dashboard/dataentry-dashboard.component';
+import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
 
 
 @NgModule({
@@ -39,8 +40,9 @@ import { DataentryDashboardComponent } from './components/dataentry-dashboard/da
     SuperAdminDashboardComponent,
     SchoolDetailsComponent,
     ApproveUserUpdateDetailsComponent,
-    TeacherRegistrationComponent
-    DataentryDashboardComponent
+    TeacherRegistrationComponent,
+    DataentryDashboardComponent,
+    TeacherRequestComponent
   ],
   imports: [
     BrowserModule,
