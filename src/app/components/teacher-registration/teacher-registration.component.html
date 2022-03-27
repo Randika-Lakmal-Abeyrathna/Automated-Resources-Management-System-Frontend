@@ -1,0 +1,148 @@
+<div class="container mt-5 p-4 teacher-form">
+  <h4 class="text-left mb-4">Teacher Registration</h4>
+  <form #registerForm="ngForm" (ngSubmit)="submitTeacher(registerForm.value);registerForm.resetForm()" class="row g-3">
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">NIC</label>
+      <!--      <input type="text" class="form-control teacher-form__input">-->
+      <input type="text" ngModel="{{register.userNic}}" id="userNic" name="userNic" disabled="true"
+        class="form-control teacher-form__input"/>
+
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">School Name</label>
+      <ng-select ngModel="{{register.schoolId}}" name="schoolId" required>
+        <ng-option *ngFor="let s of schoolList" [value]="s.id">{{s.name | titlecase}}</ng-option>
+      </ng-select>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">Appointment Date</label>
+      <input type="date" ngModel="{{register.appointmentDate}}" id="appointmentDate" name="appointmentDate"
+        class="form-control teacher-form__input">
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">Teacher Type</label>
+      <select class="form-select teacher-form__input" id="teacherTypeId" name="teacherTypeId"
+        ngModel="{{register.teacherTypeId}}">
+        <option value="3">Teacher-Provincial</option>
+        <option value="2">Teacher-Combine</option>
+        <option value="1">Principal</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">Qualifications</label>
+      <textarea rows="4" placeholder="Enter User Qualifications here" class="form-control" [(ngModel)]="qualification"
+        name="ngModel"></textarea>
+    </div>
+
+    <div class="col-md-6 mt-0">
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">Subjects</label>
+
+      <ng-select [(ngModel)]="selectedSubject" name="ngModel" (change)='onSubjectsSelect(selectedSubject)'
+        [clearable]="false">
+        <ng-option *ngFor="let subject of subjectsList" [value]="subject">{{subject.name | titlecase}}</ng-option>
+      </ng-select>
+
+      <!-- <div class="col-md-12 mt-4">
+        <button class="btn btn-primary">Add</button>
+      </div> -->
+
+      <div class="col-md-12 mt-4">
+        <h6 class="card-header">Subject Details</h6>
+
+        <table class="table">
+          <thead>
+            <th>Sub Id</th>
+            <th>Name</th>
+            <th>Action</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of selectedSubjectsList">
+              <td>{{sub.id}}</td>
+              <td>{{sub.name | titlecase}}</td>
+              <td> <button class="btn btn-danger" (click)="removeSubjectfromSelected(sub)"><i
+                    class="bi bi-trash3-fill"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <label class="form-label teacher-form__label">Former Experience</label>
+
+      <div class="row">
+
+        <div class="col-md-4 mt-1">
+          <label class="form-label teacher-form__label">Select School</label>
+        </div>
+
+        <div class="col-md-8 mt-1">
+          <ng-select [(ngModel)]="selectedSchool" name="ngModel" [clearable]="false">
+            <ng-option *ngFor="let s of schoolList" [value]="s.id">{{s.name | titlecase}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6 mt-4">
+          <label class="form-label teacher-form__label">Appointment Date</label>
+          <input type="date" [(ngModel)]="selectedAppointedDate" name="ngModel"
+            class="form-control teacher-form__input">
+        </div>
+
+        <div class="col-md-6 mt-4">
+          <label class="form-label teacher-form__label">End Date</label>
+          <input type="date" [(ngModel)]="selectedEndDate" name="ngModel" class="form-control teacher-form__input">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12 mt-4">
+          <button type="button" class="btn btn-primary table-btn" (click)="formerExperienceAddition()">Add</button>
+        </div>
+      </div>
+
+      <div class="col-md-12 mt-4">
+        <h6 class="card-header">Experience Details</h6>
+
+        <table class="table">
+          <thead>
+            <th>Id</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let exp of selectedExperienceList">
+              <td>{{exp.schoolId}}</td>
+              <td>{{exp.appointmentDate}}</td>
+              <td>{{exp.appointmentEndDate}}</td>
+              <td> <button class="btn btn-danger" (click)="removeExperiencefromSelected(exp)"><i
+                    class="bi bi-trash3-fill"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-12 mt-4">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="reset" class="btn btn-secondary ms-2">Cancel</button>
+    </div>
+
+  </form>
+</div>

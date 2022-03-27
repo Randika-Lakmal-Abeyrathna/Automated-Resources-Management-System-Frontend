@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
 import {LoginComponent} from "./components/login/login.component";
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
@@ -14,46 +15,66 @@ import {
 } from "./components/approve-user-update-details/approve-user-update-details.component";
 import {DataentryDashboardComponent} from "./components/dataentry-dashboard/dataentry-dashboard.component";
 import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
+import { TeacherRegistrationComponent } from './components/teacher-registration/teacher-registration.component';
+import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
+
 
 const routes: Routes = [
-  {path:"register",component:UserRegistrationComponent,
-    canActivate:[AuthRouteGuard]
-  },
-  {path:"login",component:LoginComponent,
-    canActivate:[AuthRouteGuard]
-  },
-  {path:"forgot",component:ForgotPasswordComponent,
-    canActivate:[AuthRouteGuard]
-  },
-  {path:"dashboard",component:DashboardComponent,
-    canActivate:[AuthRouteGuard]
+  {
+    path: "register", component: UserRegistrationComponent,
+    canActivate: [AuthRouteGuard]
   },
   {
-    path:"admin",component:AdminDashboardComponent,
-    canActivate:[AuthRouteGuard]
+    path: "login", component: LoginComponent,
+    canActivate: [AuthRouteGuard]
   },
   {
-    path:"superadmin",component:SuperAdminDashboardComponent,
-    canActivate:[AuthRouteGuard]
+    path: "forgot", component: ForgotPasswordComponent,
+    canActivate: [AuthRouteGuard]
   },
   {
-    path:"schooldetail",component:SchoolDetailsComponent,
-    canActivate:[AuthRouteGuard]
+    path: "dashboard", component: DashboardComponent,
+    canActivate: [AuthRouteGuard]
   },
   {
-    path:"teacherupdate",component:ApproveUserUpdateDetailsComponent,
-    canActivate:[AuthRouteGuard]
+    path: "admin", component: AdminDashboardComponent,
+    canActivate: [AuthRouteGuard]
   },
   {
-    path:"dataentry",component:DataentryDashboardComponent,
-    canActivate:[AuthRouteGuard]
+    path: "superadmin", component: SuperAdminDashboardComponent,
+    canActivate: [AuthRouteGuard]
   },
+  {
+    path: "schooldetail", component: SchoolDetailsComponent,
+    canActivate: [AuthRouteGuard]
+  },
+  {
+    path: "teacherupdate", component: ApproveUserUpdateDetailsComponent,
+    canActivate: [AuthRouteGuard]
+  },
+  {
+    path: "teacherRegistration", component: TeacherRegistrationComponent,
+    canActivate: [AuthRouteGuard]
+  },
+
+  {
+    path: "teacherRequest", component: TeacherRequestComponent,
+    canActivate: [AuthRouteGuard]
+  },
+  {
+
+    path: "dataentry", component: DataentryDashboardComponent,
+    canActivate: [AuthRouteGuard]
+  },
+
   {
     path:"admin-approve/:id",component:AdminApproveRequestComponent,
     canActivate:[AuthRouteGuard]
   },
-  {path:"",redirectTo:'/login',pathMatch:'full'},
-  {path:"**",component:NotfoundComponent}
+
+  { path: "", redirectTo: '/login', pathMatch: 'full' },
+  { path: "**", component: NotfoundComponent }
+
 ];
 
 @NgModule({

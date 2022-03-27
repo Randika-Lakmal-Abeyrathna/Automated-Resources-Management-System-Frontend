@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import axios, { Axios } from 'axios';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,6 +14,8 @@ export class UserRegistrationComponent implements OnInit {
 
   // Flag to check if form submitted by user to handle error messages
   isFormSubmitted = false;
+
+  
 
 
   constructor(
@@ -28,6 +31,20 @@ export class UserRegistrationComponent implements OnInit {
 
     // Defining Form Controlls with initial value and validations for each form controll
     this.addUserForm = this.formBuilder.group({
+      firstName:['', [Validators.required]],
+      middleName:['', [Validators.required]],
+      lastName:['', [Validators.required]],
+      addressNo:['', [Validators.required]],
+      addressStreet:['', [Validators.required]],
+      addressStreet2:['', [Validators.required]],
+      // city:[''],
+      contactNumber1:['', [Validators.required]],
+      contactNumber2:['', [Validators.required]],
+      nic:['', [Validators.required]],
+      // usertype:[''],
+      // status:[''],
+      // gender:[''],
+      // marital:[''],
       email: ['', [Validators.required, Validators.pattern(PAT_EMAIL)]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -43,7 +60,16 @@ export class UserRegistrationComponent implements OnInit {
     if (this.addUserForm.invalid) {
       return;
     }
+
+
     console.log('Submit', this.addUserForm.value);
+    
+    axios.post('http://localhost:8080/', this.addUserForm.value).then(resp => {
+
+      console.log(resp);
+  });
+
+
   }
 
 

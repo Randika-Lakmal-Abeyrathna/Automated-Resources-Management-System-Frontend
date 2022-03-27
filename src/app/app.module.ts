@@ -22,8 +22,11 @@ import { SchoolDetailsComponent } from './components/school-details/school-detai
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { ApproveUserUpdateDetailsComponent } from './components/approve-user-update-details/approve-user-update-details.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import { TeacherRegistrationComponent } from './components/teacher-registration/teacher-registration.component';
 import { DataentryDashboardComponent } from './components/dataentry-dashboard/dataentry-dashboard.component';
 import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
+import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { AdminApproveRequestComponent } from './components/admin-approve-request
     SchoolDetailsComponent,
     ApproveUserUpdateDetailsComponent,
     DataentryDashboardComponent,
-    AdminApproveRequestComponent
+    AdminApproveRequestComponent,
+    TeacherRegistrationComponent,
+    TeacherRequestComponent
   ],
   imports: [
     BrowserModule,

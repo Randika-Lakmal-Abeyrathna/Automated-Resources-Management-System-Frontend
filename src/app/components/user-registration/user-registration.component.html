@@ -11,34 +11,55 @@
         <option>Miss</option>
       </select>
     </div>
+
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">First Name</label>
-      <input type="email" class="form-control user-form__input">
+         <input type="text" class="form-control user-form__input" formControlName="firstName" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.firstName.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.firstName.errors?.required">First Name is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Middle Name</label>
-      <input type="password" class="form-control user-form__input">
+        <input type="text" class="form-control user-form__input" formControlName="middleName" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.middleName.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.middleName.errors?.required">Middle Name is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Last Name</label>
-      <input type="text" class="form-control user-form__input">
+        <input type="text" class="form-control user-form__input" formControlName="lastName" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.lastName.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.lastName.errors?.required">Last Name is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Address No</label>
-      <input type="text" class="form-control user-form__input">
+        <input type="text" class="form-control user-form__input" formControlName="addressNo" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.addressNo.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.addressNo.errors?.required">Address No is required</div>
+      </div>
     </div>
-
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Street 01</label>
-      <input type="text" class="form-control user-form__input">
+        <input type="text" class="form-control user-form__input" formControlName="addressStreet" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.addressStreet.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.addressStreet.errors?.required">Street 01 is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Street 02</label>
-      <input type="text" class="form-control user-form__input">
+        <input type="text" class="form-control user-form__input" formControlName="addressStreet2" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.addressStreet2.errors)}">
+            <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.addressStreet2.errors?.required">Street 02 is required</div>
+      </div>
     </div>
+
     <div class="col-md-6 mt-4">
+
+
       <label class="form-label user-form__label">City</label>
-      <select class="form-select user-form__input">
+      <select class="form-select user-form__input" >
         <option>Choose...</option>
         <option>Colombo</option>
         <option>Galle</option>
@@ -47,15 +68,24 @@
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Contact No 01</label>
-      <input type="text" class="form-control user-form__input">
+      <input type="text" class="form-control user-form__input" formControlName="contactNumber1" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.contactNumber1.errors)}">
+      <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.contactNumber1.errors?.required">Contact Number 01 is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Contact No 02</label>
-      <input type="text" class="form-control user-form__input">
+      <input type="text" class="form-control user-form__input" formControlName="contactNumber2" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.contactNumber2.errors)}">
+      <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.contactNumber2.errors)">
+        <div *ngIf="addUserForm.controls.contactNumber2.errors?.required">Contact Number 02 is required</div>
+      </div>
     </div>
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">NIC</label>
-      <input type="text" class="form-control user-form__input">
+      <input type="text" class="form-control user-form__input" formControlName="nic" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.nic.errors)}">
+      <div class="invalid-feedback" *ngIf="(isFormSubmitted && addUserForm.controls.nic.errors)">
+        <div *ngIf="addUserForm.controls.nic.errors?.required">NIC is required</div>
+      </div>
     </div>
 
     <div class="col-md-6 mt-4">
@@ -79,7 +109,7 @@
 
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">User Type</label>
-      <select class="form-select user-form__input">
+      <select class="form-select user-form__input" >
         <option>Choose...</option>
         <option>Item 1</option>
         <option>Item 2</option>
@@ -88,7 +118,7 @@
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Status</label>
-      <select class="form-select user-form__input">
+      <select class="form-select user-form__input" >
         <option >Choose...</option>
         <option>Item 1</option>
         <option>Item 2</option>
@@ -97,7 +127,7 @@
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Gender</label>
-      <select class="form-select user-form__input">
+      <select class="form-select user-form__input" >
         <option >Choose...</option>
         <option>Male</option>
         <option>Female</option>
@@ -105,7 +135,7 @@
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Marital Status</label>
-      <select class="form-select user-form__input">
+      <select class="form-select user-form__input" >
         <option >Choose...</option>
         <option>Single</option>
         <option>Married</option>
