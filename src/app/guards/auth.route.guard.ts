@@ -43,6 +43,9 @@ export class AuthRouteGuard implements CanActivate {
       if (state.url.indexOf("/teacherRequest") > -1) {
         return true;
       }
+      if (state.url.indexOf("/schoolRegistration") > -1) {
+        return true;
+      }
 
       if (state.url.indexOf("/teacherupdate") > -1 && userData.user_role == 'ROLE_USER') {
 
@@ -119,6 +122,10 @@ export class AuthRouteGuard implements CanActivate {
         return false;
       }
       if (state.url.indexOf("teacherRequest") > -1) {
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+      if (state.url.indexOf("schoolRegistration") > -1) {
         this.route.navigateByUrl("/login");
         return false;
       }
