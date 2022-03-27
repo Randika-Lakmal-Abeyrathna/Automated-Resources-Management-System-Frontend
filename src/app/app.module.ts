@@ -23,6 +23,7 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
 import { ApproveUserUpdateDetailsComponent } from './components/approve-user-update-details/approve-user-update-details.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import { DataentryDashboardComponent } from './components/dataentry-dashboard/dataentry-dashboard.component';
+import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DataentryDashboardComponent } from './components/dataentry-dashboard/da
     SuperAdminDashboardComponent,
     SchoolDetailsComponent,
     ApproveUserUpdateDetailsComponent,
-    DataentryDashboardComponent
+    DataentryDashboardComponent,
+    AdminApproveRequestComponent
   ],
   imports: [
     BrowserModule,

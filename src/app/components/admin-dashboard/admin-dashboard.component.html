@@ -29,7 +29,7 @@
                 <td>{{requset.contactNumber}}</td>
                 <td>{{requset.teacherType}}</td>
                 <td>{{requset.province | titlecase}}</td>
-                <td><a class="btn btn-warning"  >View <i class="bi bi-arrow-up-right-square"></i></a></td>
+                <td><a [routerLink]="['/admin-approve/',requset.id ]" class="btn btn-warning"  >View <i class="bi bi-arrow-up-right-square"></i></a></td>
               </tr>
               </tbody>
             </table>

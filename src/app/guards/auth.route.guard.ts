@@ -40,6 +40,10 @@ export class AuthRouteGuard implements CanActivate{
         return true;
       }
 
+      if (state.url.indexOf("/admin-approve/:id") > -1 && userData.user_role=='ROLE_ADMIN'){
+        return true;
+      }
+
         if (state.url.indexOf("/login") >-1){
           if (userData.user_role=='ROLE_SUPERADMIN'){
             this.route.navigateByUrl('/superadmin');
@@ -101,6 +105,11 @@ export class AuthRouteGuard implements CanActivate{
       }
 
       if (state.url.indexOf("teacherupdate") > -1){
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+
+      if (state.url.indexOf("/admin-approve/:id") > -1){
         this.route.navigateByUrl("/login");
         return false;
       }

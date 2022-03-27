@@ -13,6 +13,7 @@ import {
   ApproveUserUpdateDetailsComponent
 } from "./components/approve-user-update-details/approve-user-update-details.component";
 import {DataentryDashboardComponent} from "./components/dataentry-dashboard/dataentry-dashboard.component";
+import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
 
 const routes: Routes = [
   {path:"register",component:UserRegistrationComponent,
@@ -45,6 +46,10 @@ const routes: Routes = [
   },
   {
     path:"dataentry",component:DataentryDashboardComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"admin-approve/:id",component:AdminApproveRequestComponent,
     canActivate:[AuthRouteGuard]
   },
   {path:"",redirectTo:'/login',pathMatch:'full'},
