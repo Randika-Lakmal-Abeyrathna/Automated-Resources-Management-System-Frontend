@@ -8,7 +8,11 @@ import { environment } from 'src/environments/environment';
 export class AdminService {
 
   private _getAdminProvinceUrl = environment.baseUrl+"/api/admin/province/";
-  private _getAllRequestByAdminProvinceUrl = environment.baseUrl+"/api/request/all/"
+  private _getAllRequestByAdminProvinceUrl = environment.baseUrl+"/api/request/all/";
+  private _getRequestByIdUrl  =environment.baseUrl+"/api/request/find/";
+  private _getsuggestionForRequestUrl = environment.baseUrl+"/api/request/suggest/";
+  private _approveRequestUrl = environment.baseUrl+"/api/request/approve";
+
   constructor(private http:HttpClient) { }
 
   getAdminProvince(nic:String){
@@ -17,6 +21,18 @@ export class AdminService {
 
   getRequestByAdminProvince(id:number){
     return this.http.get(this._getAllRequestByAdminProvinceUrl+id,{observe:'response' as 'body'});
+  }
+
+  getRequestById(id:number){
+    return this.http.get(this._getRequestByIdUrl+id,{observe:'response' as 'body'});
+  }
+
+  getSuggestionForRequest(id:number){
+    return this.http.get(this._getsuggestionForRequestUrl+id,{observe:'response' as 'body'});
+  }
+
+  approveRequest(data:any){
+    return this.http.post<any>(this._approveRequestUrl,data,{observe:'response' as 'body'});
   }
 
 
