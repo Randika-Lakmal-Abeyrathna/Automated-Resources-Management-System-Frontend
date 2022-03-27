@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form>
+        <h4 class="text-left mb-4">School Registration</h4>
+   
+  
+        <div class="col-md-6 mt-4">
+          <label class="form-label ">School Name</label>
+    <!--      <input type="text" class="form-control teacher-form__input">-->
+          <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter School Name"/>
+    
+        </div>
+    
+        <div class="col-md-6 mt-4">
+          <label class="form-label">City</label>
+          <ng-select  name ="cityId" required >
+            <ng-option ></ng-option>
+          </ng-select>
+        </div>
+    
+        <div class="col-md-6 mt-4">
+          <label class="form-label">Educational Zone</label>
+          <ng-select  name ="zoneId" required >
+            <ng-option ></ng-option>
+          </ng-select>
+        </div>
+    
+        <div class="col-md-6 mt-4">
+          <label class="form-label">School Type</label>
+          <ng-select  name ="typeId" required >
+            <ng-option ></ng-option>
+          </ng-select>
+        </div>
+        
+        <h4 class="text-left mb-4">Carder Details</h4>
+  
+      <div class="col-md-4 mt-4">
+        <label class="form-label">Subject</label>
+        <ng-select  name ="subjectId" required >
+          <ng-option ></ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <label class="form-label ">Current Teacher Count</label>
+  <!--      <input type="text" class="form-control teacher-form__input">-->
+        <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter Current Teacher Count"/>
+  
+      </div>
+
+      <div class="col-md-4 mt-4">
+        <label class="form-label ">Teacher Limit</label>
+  <!--      <input type="text" class="form-control teacher-form__input">-->
+        <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter Teacher Limit"/>
+  
+      </div>
+  
+      <div class="col-12 mt-4">
+        <button type="button" class="btn btn-primary">Add</button>
+      </div>
+
+      <table>
+        <thead>
+          <th>Subject</th>
+          <th>Current</th>
+          <th>Limit</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <div class="col-12 mt-7 ">
+        <button type="submit" class="btn btn-primary float-end">Save</button>
+        <button type="reset"  class="btn btn-secondary ms-2 btncancel float-end">Cancel</button>
+      </div>
+
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

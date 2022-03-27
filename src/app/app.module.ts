@@ -26,6 +26,7 @@ import { TeacherRegistrationComponent } from './components/teacher-registration/
 import { DataentryDashboardComponent } from './components/dataentry-dashboard/dataentry-dashboard.component';
 import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
 import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
+import { SchoolRegistrationComponent } from './components/school-registration/school-registration.component';
 
 
 @NgModule({
@@ -42,9 +43,11 @@ import { TeacherRequestComponent } from './components/teacher-request/teacher-re
     SchoolDetailsComponent,
     ApproveUserUpdateDetailsComponent,
     DataentryDashboardComponent,
+    SchoolRegistrationComponent,
     AdminApproveRequestComponent,
     TeacherRegistrationComponent,
     TeacherRequestComponent
+
   ],
   imports: [
     BrowserModule,
