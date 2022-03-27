@@ -10,3 +10,12 @@
 .teacher-form__input{
   box-shadow: none !important;
 }
+.table{
+  margin-left:1%;
+  margin-top:1%;
+}
+
+.table-btn{
+  display: flex;
+  float: right;
+}

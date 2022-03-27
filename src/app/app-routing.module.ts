@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserRegistrationComponent } from "./components/user-registration/user-registration.component";
-import { LoginComponent } from "./components/login/login.component";
-import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
-import { AuthRouteGuard } from "./guards/auth.route.guard";
-import { NotfoundComponent } from "./components/notfound/notfound.component";
-import { AdminDashboardComponent } from "./components/admin-dashboard/admin-dashboard.component";
-import { SuperAdminDashboardComponent } from "./components/super-admin-dashboard/super-admin-dashboard.component";
-import { SchoolDetailsComponent } from "./components/school-details/school-details.component";
-import { ApproveUserUpdateDetailsComponent } from "./components/approve-user-update-details/approve-user-update-details.component";
+
+import {UserRegistrationComponent} from "./components/user-registration/user-registration.component";
+import {LoginComponent} from "./components/login/login.component";
+import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AuthRouteGuard} from "./guards/auth.route.guard";
+import {NotfoundComponent} from "./components/notfound/notfound.component";
+import {AdminDashboardComponent} from "./components/admin-dashboard/admin-dashboard.component";
+import {SuperAdminDashboardComponent} from "./components/super-admin-dashboard/super-admin-dashboard.component";
+import {SchoolDetailsComponent} from "./components/school-details/school-details.component";
+import {
+  ApproveUserUpdateDetailsComponent
+} from "./components/approve-user-update-details/approve-user-update-details.component";
+import {DataentryDashboardComponent} from "./components/dataentry-dashboard/dataentry-dashboard.component";
+import { AdminApproveRequestComponent } from './components/admin-approve-request/admin-approve-request.component';
 import { TeacherRegistrationComponent } from './components/teacher-registration/teacher-registration.component';
-import { DataentryDashboardComponent } from "./components/dataentry-dashboard/dataentry-dashboard.component";
 import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
 import { SchoolRegistrationComponent } from './components/school-registration/school-registration.component';
 
@@ -64,12 +68,18 @@ const routes: Routes = [
     canActivate: [AuthRouteGuard]
   },
   {
-
     path: "schoolRegistration", component: SchoolRegistrationComponent,
     canActivate: [AuthRouteGuard]
   },
+
+  {
+    path:"admin-approve/:id",component:AdminApproveRequestComponent,
+    canActivate:[AuthRouteGuard]
+  },
+
   { path: "", redirectTo: '/login', pathMatch: 'full' },
   { path: "**", component: NotfoundComponent }
+
 ];
 
 @NgModule({
