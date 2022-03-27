@@ -14,6 +14,7 @@ export class CommonService {
   private _getMaritalStatusUrl = environment.baseUrl+"/api/maritalstatus/all";
   private _getAllSchoolUrl = environment.baseUrl+"/api/school/all";
   private _getAllProvinceUrl = environment.baseUrl+"/api/province/all";
+  private _getAllSubjectsUrl = environment.baseUrl+"/api/subject/all";
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -40,5 +41,9 @@ export class CommonService {
 
   getAllProvinces(){
     return this.http.get(this._getAllProvinceUrl,{observe:'response' as 'body'});
+  }
+
+  getAllSubjects(){
+    return this.http.get(this._getAllSubjectsUrl,{observe:'response' as 'body'});
   }
 }
