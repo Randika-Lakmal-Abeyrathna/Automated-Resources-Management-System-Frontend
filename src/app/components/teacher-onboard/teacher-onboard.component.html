@@ -1,0 +1,68 @@
+
+
+<!--  Principle Area start-->
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <h5 class="card-header">Pending On Board Requests</h5>
+          <div class="card-body">
+            <div>
+              <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+            </div>
+            <br>
+            <table class="table">
+              <thead>
+              <th>NIC</th>
+              <th>Name</th>
+              <th>Contact Number</th>
+              <th>Appointed Date</th>
+              <th>Subject</th>
+              <th></th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let pending of allPendingOnBoadRequestForSchool | filter:data">
+                <td>{{pending.nic |titlecase}}</td>
+                <td>{{pending.name |titlecase}}</td>
+                <td>{{pending.contactNumber}}</td>
+                <td>{{pending.appointmentDate | date}}</td>
+                <td>{{pending.subject}}</td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" attr.data-bs-target="#confirm{{pending.id}}">
+                  On Board  <i class="bi bi-arrow-right-square"></i>
+                </button></td>
+                <!--          Teacher on board Confirm box start-->
+  
+                <div class="modal fade"  attr.id="confirm{{pending.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" >On Board Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                       Teacher {{pending.name|titlecase}} is about to on board
+                        <h5>Are you sure ?</h5>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" data-bs-dismiss="modal" (click)="onBoardTeacher(pending.id)">On Board <i class="bi bi-arrow-right-square"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <!--          Teacher on board Confirm box end-->
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  
+  
