@@ -19,6 +19,8 @@ export class TeacherService {
   private _addTeacherDetailsUrl = environment.baseUrl+"/api/teacher/add/"
   private _getAllTeachersUrl = environment.baseUrl+"/api/teacher/all";
   private _addTeacherRequestUrl = environment.baseUrl+"/api/teacher/teacherTransfer/add";
+  private _getAllPendingOnBoardRequestUrl = environment.baseUrl+"/api/teacher/find/onboarding/";
+  private _approveOnBoardRequestUrl =environment.baseUrl+"/api/teacher/approve/onboarding/";
 
 
   constructor(private http:HttpClient,private router: Router,private toast:ToastrService) { }
@@ -66,6 +68,14 @@ export class TeacherService {
 
   getAllTeachers(){
     return this.http.get(this._getAllTeachersUrl,{observe:'response' as 'body'});
+  }
+
+  getAllPendingOnBoardRequest(schoolid:number){
+    return this.http.get(this._getAllPendingOnBoardRequestUrl+schoolid,{observe:'response' as 'body'});
+  }
+
+  approveOnBoardRequest(requestOnBoardId:number){
+    return this.http.get(this._approveOnBoardRequestUrl+requestOnBoardId,{observe:'response' as 'body'});
   }
 
 }
