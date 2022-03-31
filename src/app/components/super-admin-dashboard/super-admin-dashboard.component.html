@@ -1,1 +1,42 @@
-<p>super-admin-dashboard works!</p>
+
+<div class="container-fluid">
+    <h3 class="text-end">Welcome {{userDetails.firstName | titlecase}} !</h3>
+    <div class="row">
+        <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <h5 class="card-header">All Teacher Requests</h5>
+          <div class="card-body">
+            <div>
+              <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+            </div>
+            <br>
+            <table class="table">
+              <thead>
+                <th>NIC</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Teacher Type</th>
+                <th>Province</th>
+                <th></th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let requset of allTeacherRequestDataArray  | filter:data">
+                <td>{{requset.nic |uppercase}}</td>
+                <td>{{requset.name |uppercase}}</td>
+                <td>{{requset.email}}</td>
+                <td>{{requset.contactNumber}}</td>
+                <td>{{requset.teacherType}}</td>
+                <td>{{requset.province | titlecase}}</td>
+                <td><a [routerLink]="['/super-admin-approve/',requset.id ]" class="btn btn-warning"  >View <i class="bi bi-arrow-up-right-square"></i></a></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  

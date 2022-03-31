@@ -1,0 +1,101 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">Teacher Request</h5>
+                <div class="card-body">
+                    <div>
+                        Name : {{requestData.name | titlecase}}
+                        <hr>
+                        NIC : {{requestData.nic | titlecase}}
+                        <hr>
+                        Contact Number : {{requestData.contactNumber }}
+                        <hr>
+                        Email : {{requestData.email }}
+                        <hr>
+                        Teacher Type: {{requestData.teacherType | titlecase}}
+                        <hr>
+                        Comments: {{requestData.comment | titlecase}}
+                        <hr>
+                      </div>
+    
+                      <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                Current School : {{requestData.currentSchool | titlecase}}
+                                <hr>
+                                Appointed Data: {{requestData.appointedDate | date}}
+                                <hr>
+                                Subjects: <span *ngFor="let subject of subjects "> <br>  {{subject | uppercase}}</span>
+                                <hr>
+                                Current Province: {{requestData.currentProvince | titlecase}}
+                            </div>
+                            <div class="col-md-6">
+                                Request School : <b>{{requestData.requestedSchool | titlecase}}</b>
+                                <hr>
+                                Request Province : <b>{{requestData.requestedProvince | titlecase}}</b>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+              </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header">Suggested Schools</h5>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <th>School Name</th>
+                        <th>School Type</th>
+                        <th>Slots</th>
+                        <th>Subject</th>
+                        <th></th>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let school of suggestedSchools">
+                            <td>{{school.schoolName |uppercase}}</td>
+                            <td>{{school.schoolType |uppercase}}</td>
+                            <td>{{school.slot }}</td>
+                            <td>{{school.subject}}</td>
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" attr.data-bs-target="#confirm{{school.schoolid}}">
+                                Select <i class="bi bi-check2-square"></i>
+                              </button></td>
+    
+                              <!--          Transfer Select School start-->
+    
+                    <div class="modal fade"  attr.id="confirm{{school.schoolid}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" >Transfer Confirmation</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <form #approveForm="ngForm" (ngSubmit)="ApproveSelectedSchool(approveForm.value,school.schoolid)">
+                            <div class="modal-body">
+                              <h4><b>{{school.schoolName |uppercase}}</b> will be selected to Transfer</h4> 
+                              <label>Please Select Appointment Date :</label>
+                              <input type="date" class="form-control" ngModel="{{approveRequest.date}}" name="date" value="{{approveRequest.date}}" />
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-success" data-bs-dismiss="modal" >Confirm <i class="bi bi-check2-square"></i></button>
+                            </div>
+                        </form>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <!--           Transfer Select School end-->
+    
+                          </tr>
+                        </tbody>
+                      </table>
+                  
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>

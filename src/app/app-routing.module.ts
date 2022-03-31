@@ -19,6 +19,7 @@ import { TeacherRegistrationComponent } from './components/teacher-registration/
 import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
 import { SchoolRegistrationComponent } from './components/school-registration/school-registration.component';
 import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-onboard.component';
+import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
 
 
 const routes: Routes = [
@@ -75,6 +76,10 @@ const routes: Routes = [
 
   {
     path:"admin-approve/:id",component:AdminApproveRequestComponent,
+    canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"super-admin-approve/:id",component:SuperAdminApproveRequestComponent,
     canActivate:[AuthRouteGuard]
   },
   {

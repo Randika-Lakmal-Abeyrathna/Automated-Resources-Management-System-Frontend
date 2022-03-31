@@ -12,6 +12,7 @@ export class AdminService {
   private _getRequestByIdUrl  =environment.baseUrl+"/api/request/find/";
   private _getsuggestionForRequestUrl = environment.baseUrl+"/api/request/suggest/";
   private _approveRequestUrl = environment.baseUrl+"/api/request/approve";
+  private _getAllNonZonalRequestBySuperAdmin = environment.baseUrl+"/api/request/all/nonzonal";
 
   constructor(private http:HttpClient) { }
 
@@ -33,6 +34,10 @@ export class AdminService {
 
   approveRequest(data:any){
     return this.http.post<any>(this._approveRequestUrl,data,{observe:'response' as 'body'});
+  }
+
+  getRequestForSuperAdmin(){
+    return this.http.get(this._getAllNonZonalRequestBySuperAdmin,{observe:'response' as 'body'});
   }
 
 

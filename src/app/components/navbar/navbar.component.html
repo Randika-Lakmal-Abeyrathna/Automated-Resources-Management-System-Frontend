@@ -50,6 +50,12 @@
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
       </ul>
+
+      <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='superadmin' && userLogedIn">
+        <li *ngIf="userLogedIn" class="nav-item">
+          <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
+        </li>
+      </ul>
     </div>
   </nav>
 
