@@ -50,7 +50,7 @@ export class AuthRouteGuard implements CanActivate {
         return true;
       }
 
-      if (state.url.indexOf("/teacherRequest") > -1) {
+      if (state.url.indexOf("/teacherRequest") > -1 && userData.user_role=='ROLE_USER') {
         return true;
       }
       if (state.url.indexOf("/schoolRegistration") > -1) {

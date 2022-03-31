@@ -22,9 +22,9 @@
       <input type="text" ngModel="{{request.comment}}" id="comment" name="comment" class="form-control teacherRequest-form__input">
     </div>
 
-    <div class="col-12 mt-4">
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="reset" class="btn btn-secondary ms-2">Cancel</button>
+    <div class="col-12 mt-4 ">
+      <button type="submit" class="btn btn-primary  ms-2 float-end">Save</button>
+      <button [routerLink]="['/dashboard']" type="button" class="btn btn-secondary ms-2 float-end">Cancel</button>
     </div>
 
   </form>
