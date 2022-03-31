@@ -20,6 +20,7 @@ import { TeacherRequestComponent } from './components/teacher-request/teacher-re
 import { SchoolRegistrationComponent } from './components/school-registration/school-registration.component';
 import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-onboard.component';
 import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
+import { DeniedComponent } from './components/denied/denied.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,9 @@ const routes: Routes = [
   {
     path:"teacher-onboard",component:TeacherOnboardComponent,
     canActivate:[AuthRouteGuard]
+  },
+  {
+    path:"denied",component:DeniedComponent
   },
 
   { path: "", redirectTo: '/login', pathMatch: 'full' },

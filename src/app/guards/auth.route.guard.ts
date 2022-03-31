@@ -17,54 +17,120 @@ export class AuthRouteGuard implements CanActivate {
     if (userData && userData.userid) {
       console.log("url", state.url);
       console.log("User Role =>", userData.user_role);
-      if (state.url.indexOf("/dashboard") > -1 && userData.user_role == 'ROLE_USER') {
-        return true;
+      if (state.url.indexOf("/dashboard") > -1 ) {
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
+        
       }
-      if (state.url.indexOf("/register") > -1 && userData.user_role == 'ROLE_DATAENTRY') {
-        return true;
+      if (state.url.indexOf("/register") > -1 ) {
+        if(userData.user_role == 'ROLE_DATAENTRY'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
-      if (state.url.indexOf("/admin") > -1 && userData.user_role == 'ROLE_ADMIN') {
-        return true;
+      if (state.url.indexOf("/admin") > -1 ) {
+        if(userData.user_role == 'ROLE_ADMIN'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
-      if (state.url.indexOf("/superadmin") > -1 && userData.user_role == 'ROLE_SUPERADMIN') {
-        return true;
+      if (state.url.indexOf("/superadmin") > -1) {
+        if(userData.user_role == 'ROLE_SUPERADMIN'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
-      if (state.url.indexOf("/dataentry") > -1 && userData.user_role == 'ROLE_DATAENTRY') {
-        return true;
+      if (state.url.indexOf("/dataentry") > -1 ) {
+        if(userData.user_role == 'ROLE_DATAENTRY'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
-      if (state.url.indexOf("/schooldetail") > -1 && userData.user_role == 'ROLE_USER') {
-        return true;
+      if (state.url.indexOf("/schooldetail") > -1 ) {
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
       if (state.url.indexOf("/teacherRegistration") > -1) {
-        return true;
+        if(userData.user_role == 'ROLE_DATAENTRY'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
 
-      if (state.url.indexOf("/admin-approve/:id") > -1 && userData.user_role=='ROLE_ADMIN'){
-        return true;
+      if (state.url.indexOf("/admin-approve/:id") > -1){
+        if(userData.user_role == 'ROLE_ADMIN'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
-      if (state.url.indexOf("/super-admin-approve/") > -1 && userData.user_role=='ROLE_SUPERADMIN'){
-        return true;
+      if (state.url.indexOf("/super-admin-approve/") > -1 ){
+        if(userData.user_role == 'ROLE_SUPERADMIN'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
-      if (state.url.indexOf("/teacherRequest") > -1 && userData.user_role=='ROLE_USER') {
-        return true;
+      if (state.url.indexOf("/teacherRequest") > -1 ) {
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
       if (state.url.indexOf("/schoolRegistration") > -1) {
-        return true;
+        if(userData.user_role == 'ROLE_DATAENTRY'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
-      if (state.url.indexOf("/teacherupdate") > -1 && userData.user_role == 'ROLE_USER') {
+      if (state.url.indexOf("/teacherupdate") > -1 ) {
 
-        return true;
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
-      if (state.url.indexOf("/teacher-onboard") > -1 && userData.user_role == 'ROLE_USER') {
+      if (state.url.indexOf("/teacher-onboard") > -1 ) {
 
-        return true;
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
       }
 
 
