@@ -15,6 +15,8 @@ export class CommonService {
   private _getAllSchoolUrl = environment.baseUrl+"/api/school/all";
   private _getAllProvinceUrl = environment.baseUrl+"/api/province/all";
   private _getAllSubjectsUrl = environment.baseUrl+"/api/subject/all";
+  private _getAllUserTypesUrl = environment.baseUrl+"/api/userType/all";
+  private _getAllstatusUrl = environment.baseUrl+"/api/status/all";
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -45,5 +47,13 @@ export class CommonService {
 
   getAllSubjects(){
     return this.http.get(this._getAllSubjectsUrl,{observe:'response' as 'body'});
+  }
+
+  getAllUserTypes(){
+    return this.http.get(this._getAllUserTypesUrl,{observe:'response' as 'body'});
+  }
+
+  getAllStatus(){
+    return this.http.get(this._getAllstatusUrl,{observe:'response' as 'body'});
   }
 }
