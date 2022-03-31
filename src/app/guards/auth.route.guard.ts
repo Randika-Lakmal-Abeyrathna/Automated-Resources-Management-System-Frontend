@@ -16,6 +16,7 @@ export class AuthRouteGuard implements CanActivate {
     console.log("userData", userData);
     if (userData && userData.userid) {
       console.log("url", state.url);
+      console.log("User Role =>", userData.user_role);
       if (state.url.indexOf("/dashboard") > -1 && userData.user_role == 'ROLE_USER') {
         return true;
       }
@@ -42,6 +43,10 @@ export class AuthRouteGuard implements CanActivate {
 
 
       if (state.url.indexOf("/admin-approve/:id") > -1 && userData.user_role=='ROLE_ADMIN'){
+        return true;
+      }
+
+      if (state.url.indexOf("/super-admin-approve/") > -1 && userData.user_role=='ROLE_SUPERADMIN'){
         return true;
       }
 
@@ -130,6 +135,11 @@ export class AuthRouteGuard implements CanActivate {
 
 
       if (state.url.indexOf("/admin-approve/:id") > -1){
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+
+      if (state.url.indexOf("/super-admin-approve/") > -1){
         this.route.navigateByUrl("/login");
         return false;
       }

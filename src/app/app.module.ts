@@ -28,6 +28,7 @@ import { AdminApproveRequestComponent } from './components/admin-approve-request
 import { TeacherRequestComponent } from './components/teacher-request/teacher-request.component';
 import { SchoolRegistrationComponent } from './components/school-registration/school-registration.component';
 import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-onboard.component';
+import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-on
     AdminApproveRequestComponent,
     TeacherRegistrationComponent,
     TeacherRequestComponent,
-    TeacherOnboardComponent
+    TeacherOnboardComponent,
+    SuperAdminApproveRequestComponent
 
   ],
   imports: [
