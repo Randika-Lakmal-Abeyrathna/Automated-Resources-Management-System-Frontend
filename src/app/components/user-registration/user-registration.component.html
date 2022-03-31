@@ -6,9 +6,9 @@
       <label class="form-label user-form__label">Salutation</label>
       <select class="form-select user-form__input">
         <option>Choose...</option>
-        <option>Mr</option>
-        <option>Mrs</option>
-        <option>Miss</option>
+        <option value="1">Mr</option>
+        <option value="3">Mrs</option>
+        <option value="2">Miss</option>
       </select>
     </div>
 
@@ -56,16 +56,12 @@
     </div>
 
     <div class="col-md-6 mt-4">
-
-
       <label class="form-label user-form__label">City</label>
-      <select class="form-select user-form__input" >
-        <option>Choose...</option>
-        <option>Colombo</option>
-        <option>Galle</option>
-        <option>Kandy</option>
-      </select>
+        <ng-select ngModel="{{uRegister.cityId}}" name="cityId" required>
+          <ng-option *ngFor="let c of cityList" [value]="c.id">{{c.name | titlecase}}</ng-option>
+        </ng-select>
     </div>
+
     <div class="col-md-6 mt-4">
       <label class="form-label user-form__label">Contact No 01</label>
       <input type="text" class="form-control user-form__input" formControlName="contactNumber1" [ngClass]="{'is-invalid': (isFormSubmitted && addUserForm.controls.contactNumber1.errors)}">
@@ -109,37 +105,30 @@
 
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">User Type</label>
-      <select class="form-select user-form__input" >
-        <option>Choose...</option>
-        <option>Item 1</option>
-        <option>Item 2</option>
-        <option>Item 3</option>
-      </select>
+      <ng-select ngModel="{{uRegister.userTypeId}}" name="userTypeId" required>
+        <ng-option *ngFor="let u of userTypeList" [value]="u.id">{{u.name | titlecase}}</ng-option>
+      </ng-select>
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Status</label>
-      <select class="form-select user-form__input" >
-        <option >Choose...</option>
-        <option>Item 1</option>
-        <option>Item 2</option>
-        <option>Item 3</option>
-      </select>
+      <ng-select ngModel="{{uRegister.status}}" name="status" required>
+        <ng-option *ngFor="let s of statusList" [value]="s.id">{{s.name | titlecase}}</ng-option>
+      </ng-select>
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Gender</label>
       <select class="form-select user-form__input" >
         <option >Choose...</option>
-        <option>Male</option>
-        <option>Female</option>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
       </select>
     </div>
     <div class="col-md-6 mt-4">
       <label  class="form-label user-form__label">Marital Status</label>
       <select class="form-select user-form__input" >
         <option >Choose...</option>
-        <option>Single</option>
-        <option>Married</option>
-        <option>Divorced</option>
+        <option value="1">Single</option>
+        <option value="2">Married</option>
       </select>
     </div>
     <div class="col-md-6 mt-4">
