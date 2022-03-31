@@ -39,7 +39,7 @@ export class ApproveUserUpdateDetailsComponent implements OnInit {
 
   pendingApproveData:Array<any> =[];
   constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService,
-              private formBuilder: FormBuilder,private toast:ToastrService,private router:Router,) { }
+              private formBuilder: FormBuilder,private toast:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
 

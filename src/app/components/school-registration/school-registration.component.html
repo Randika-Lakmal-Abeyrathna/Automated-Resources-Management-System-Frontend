@@ -2,75 +2,93 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <form>
+      <form #registerSchoolForm="ngForm" (ngSubmit)="registerSchool(registerSchoolForm.value); registerSchoolForm.resetForm()">
         <h4 class="text-left mb-4">School Registration</h4>
    
-  
-        <div class="col-md-6 mt-4">
-          <label class="form-label ">School Name</label>
-    <!--      <input type="text" class="form-control teacher-form__input">-->
-          <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter School Name"/>
-    
+        <div class="row">
+          <div class="col-md-6 mt-4">
+            <label class="form-label ">School Name</label>
+      <!--      <input type="text" class="form-control teacher-form__input">-->
+            <input type="text" id="schoolName" ngModel="{{schoolRegistration.name }}" name="schoolName" class="form-control "  placeholder="Enter School Name"/>
+      
+          </div>
+      
+          <div class="col-md-6 mt-4">
+            <label class="form-label">City</label>
+            <ng-select ngModel="{{schoolRegistration.cityId }}" name ="city"  >
+              <ng-option *ngFor="let c of allCity" [value]="c.id">{{c.city | titlecase}}</ng-option>
+            </ng-select>
+          </div>
         </div>
-    
-        <div class="col-md-6 mt-4">
-          <label class="form-label">City</label>
-          <ng-select  name ="cityId" required >
-            <ng-option ></ng-option>
-          </ng-select>
+        <div class="row">
+          <div class="col-md-6 mt-4">
+            <label class="form-label">Educational Zone</label>
+            <ng-select ngModel="{{schoolRegistration.zonalId }}" name ="zonal"  >
+              <ng-option *ngFor="let z of allZonal" [value]="z.id">{{z.zonal | titlecase}}</ng-option>
+            </ng-select>
+          </div>
+      
+          <div class="col-md-6 mt-4">
+            <label class="form-label">School Type</label>
+            <ng-select ngModel="{{schoolRegistration.schoolTypeId }}" name ="schoolType"  >
+              <ng-option *ngFor="let st of allSchoolType" [value]="st.id">{{st.schoolType | titlecase}}</ng-option>
+            </ng-select>
+          </div>
         </div>
-    
-        <div class="col-md-6 mt-4">
-          <label class="form-label">Educational Zone</label>
-          <ng-select  name ="zoneId" required >
-            <ng-option ></ng-option>
-          </ng-select>
-        </div>
-    
-        <div class="col-md-6 mt-4">
-          <label class="form-label">School Type</label>
-          <ng-select  name ="typeId" required >
-            <ng-option ></ng-option>
-          </ng-select>
-        </div>
-        
+        <br>
+        <hr>
         <h4 class="text-left mb-4">Carder Details</h4>
-  
-      <div class="col-md-4 mt-4">
-        <label class="form-label">Subject</label>
-        <ng-select  name ="subjectId" required >
-          <ng-option ></ng-option>
-        </ng-select>
-      </div>
+        <form #add="ngForm" (ngSubmit)="addCarder(add.value); add.resetForm()">
+        <div class="row">
+          <div class="col-md-4 mt-4">
+            <label class="form-label">Subject</label>
+            <ng-select ngModel="{{carderDetails.subjectId }}" name ="subject"  >
+              <ng-option *ngFor="let s of allSubject" [value]="s.subject">{{s.subject | titlecase}}</ng-option>
+            </ng-select>
+          </div>
+    
+          <div class="col-md-4 mt-4">
+            <label class="form-label ">Current Teacher Count</label>
+      <!--      <input type="text" class="form-control teacher-form__input">-->
+            <input type="text" id="current" ngModel="{{carderDetails.current }}" name="current" class="form-control "  placeholder="Enter Current Teacher Count"/>
+      
+          </div>
+    
+          <div class="col-md-4 mt-4">
+            <label class="form-label ">Teacher Limit</label>
+      <!--      <input type="text" class="form-control teacher-form__input">-->
+            <input type="text" id="limit" ngModel="{{carderDetails.limitation }}" name="limit" class="form-control "  placeholder="Enter Teacher Limit"/>
+      
+          </div>
 
-      <div class="col-md-4 mt-4">
-        <label class="form-label ">Current Teacher Count</label>
-  <!--      <input type="text" class="form-control teacher-form__input">-->
-        <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter Current Teacher Count"/>
-  
-      </div>
+          <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary ms-2 float-end"  >Add</button>
+          </div>
 
-      <div class="col-md-4 mt-4">
-        <label class="form-label ">Teacher Limit</label>
-  <!--      <input type="text" class="form-control teacher-form__input">-->
-        <input type="text" id="schoolName" name="schoolName" class="form-control "  placeholder="Enter Teacher Limit"/>
-  
+        </div>
+      </form>
+     
+      <hr>
+      <div class="row">
+        <table class="table">
+          <thead>
+            <th>Subject</th>
+            <th>Current</th>
+            <th>Limit</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of allCarderDetails">
+              <td>{{c.subject}}</td>
+              <td>{{c.current}}</td>
+              <td>{{c.limit}}</td>
+              <td><button type="button" class="btn btn-danger" (click)="removeCarder(c)">
+                <i class="bi bi-trash3-fill"></i>
+              </button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-  
-      <div class="col-12 mt-4">
-        <button type="button" class="btn btn-primary">Add</button>
-      </div>
-
-      <table>
-        <thead>
-          <th>Subject</th>
-          <th>Current</th>
-          <th>Limit</th>
-        </thead>
-        <tbody>
-
-        </tbody>
-      </table>
+      <hr>
       <div class="col-12 mt-7 ">
         <button type="submit" class="btn btn-primary float-end">Save</button>
         <button type="reset"  class="btn btn-secondary ms-2 btncancel float-end">Cancel</button>
