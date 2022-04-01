@@ -1,4 +1,4 @@
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TeacherService } from "../../service/teacher.service";
@@ -21,7 +21,15 @@ export class TeacherRegistrationComponent implements OnInit {
   // Flag to check if form submitted by user to handle error messages
   isFormSubmitted = false;
 
-  register :any ={};
+  id: any | null;
+
+  register ={
+      userNic: '',
+      schoolId: '',
+      appointmentDate: '',
+      retireDate: '',
+      teacherTypeId: 3
+  };
   schoolList: any = [];
 
   subjectsList: any = [];
@@ -36,19 +44,20 @@ export class TeacherRegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, private toast: ToastrService, private teacherService: TeacherService,
-    private loginService: LoginServiceService, private commonService: CommonService, private route: Router
+    private loginService: LoginServiceService, private commonService: CommonService, private route: Router,
+    private _Activatedroute:ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
 
-    this.register = {
-      userNic: '',
-      schoolId: '',
-      appointmentDate: '',
-      retireDate: '',
-      teacherTypeId: 3
-    }
+    this._Activatedroute.paramMap.subscribe(params => { 
+      console.log(params);
+       this.id = params.get('id'); 
+       console.log(this.id);
+       this.register.userNic = this.id;
+   });
+
 
     this.loginService.userInfo.subscribe(value => {
       if (value) {

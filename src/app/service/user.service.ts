@@ -10,6 +10,7 @@ import {environment} from "../../environments/environment";
 export class UserService {
 
   private _getUserDataUrl=environment.baseUrl+"/api/user/find/";
+  private _addUserUrl = environment.baseUrl+"/api/user/register";
   private _requestUpdateUserUrl = environment.baseUrl+"/api/updateuser/request";
   private _getUserUpdateRequestByUserUrl = environment.baseUrl+"/api/updateuser/find/user/";
   private _deleteUpdateUserRequestUrl =environment.baseUrl+"/api/updateuser/";
@@ -20,6 +21,10 @@ export class UserService {
 
   getUserData(nic:string){
     return this.http.get(this._getUserDataUrl+nic,{observe:'response' as 'body'});
+  }
+
+  registerUser(data:any){
+    return this.http.post<any>(this._addUserUrl,data,{observe:'response' as 'body'});
   }
 
   requestUpdateUser(data:any){

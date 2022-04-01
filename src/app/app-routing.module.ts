@@ -57,7 +57,7 @@ const routes: Routes = [
     canActivate: [AuthRouteGuard]
   },
   {
-    path: "teacherRegistration", component: TeacherRegistrationComponent,
+    path: "teacherRegistration/:id", component: TeacherRegistrationComponent,
     canActivate: [AuthRouteGuard]
   },
 

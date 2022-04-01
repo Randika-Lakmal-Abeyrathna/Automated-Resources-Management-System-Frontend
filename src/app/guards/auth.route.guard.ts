@@ -68,7 +68,7 @@ export class AuthRouteGuard implements CanActivate {
         }
       }
 
-      if (state.url.indexOf("/teacherRegistration") > -1) {
+      if (state.url.indexOf("/teacherRegistration/") > -1) {
         if(userData.user_role == 'ROLE_DATAENTRY'){
           return true;
         }else{
