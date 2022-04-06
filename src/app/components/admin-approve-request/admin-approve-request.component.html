@@ -17,7 +17,7 @@
                     <hr>
                     Comments: {{requestData.comment | titlecase}}
                     <hr>
-                  </div>
+                </div>
 
                   <div class="card-body">
                     <div class="row">
@@ -37,8 +37,32 @@
                             <hr>
                         </div>
                     </div>
+                  </div>
+                  <button type="button" class="btn btn-warning float-end" data-bs-toggle="modal" data-bs-target="#reject">Reject</button>
+                   <!--          Reject Request start-->
+
+                <div class="modal fade"  id="reject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" >Transfer Reject</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                  <form #rejectForm="ngForm" (ngSubmit)="rejectRequest(rejectForm.value,requestData.id)">
+                      <div class="modal-body">
+                        <label>Please Enter reason :</label>
+                        <input type="text" class="form-control" ngModel="{{rejectRequestData.comment}}" name="comment" />
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" >Reject <i class="bi bi-check2-square"></i></button>
+                      </div>
+                  </form>
+                    </div>
+                  </div>
                 </div>
-              
+
+                <!--          Reject Request end-->
             </div>
           </div>
     </div>

@@ -36,6 +36,10 @@ export class SuperAdminApproveRequestComponent implements OnInit {
     requestId:0,
     carderId:0
   }
+
+  rejectRequestData={
+    comment:''
+  }
   constructor(private _Activatedroute:ActivatedRoute,private adminService:AdminService,private toast:ToastrService,
     private router:Router) { }
 
@@ -149,6 +153,28 @@ export class SuperAdminApproveRequestComponent implements OnInit {
 
     }
        
+  }
+
+  rejectRequest(data:any,id:number){
+
+    let requestData ={
+      id:id,
+      comment:data.comment
+    }
+    
+    this.adminService.rejectRequest(requestData)
+          .subscribe(
+            (data:any)=>{
+              this.toast.success("Transfer Request is Rejected","Success",{timeOut: 3000});
+              setTimeout(()=>{
+                return this.router.navigateByUrl("/superadmin");
+              }, 1000);
+
+            },
+            error=>{
+              console.log(error);
+            }
+          );
   }
 
 }
