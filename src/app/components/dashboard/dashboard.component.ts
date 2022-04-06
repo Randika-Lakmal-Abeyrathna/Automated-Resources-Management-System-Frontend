@@ -48,6 +48,14 @@ export class DashboardComponent implements OnInit {
 
 
   }
+
+  updateRequestData = {
+    id:'',
+    provunce:'',
+    school:'',
+    comment:''
+  }
+
   teacherSubjects:Array<string> =[];
 
   teacherExperienceDataArray:Array<any> =[];
@@ -55,6 +63,7 @@ export class DashboardComponent implements OnInit {
   allTeacherSubjectArray:Array<any> =[];
   allTeacherDataArray:Array<any>=[];
   schoolCarderDataArray:Array<any>=[];
+  allRequestsArray:Array<any> =[];
 
   personalDetails =true;
   teacherDetails =false;
@@ -66,6 +75,9 @@ export class DashboardComponent implements OnInit {
 
   updateRequestList:any =[];
 
+  schoolList: any = [];
+  provinceList: any = [];
+
   constructor(private loginService:LoginServiceService,private userService:UserService,private teacherService:TeacherService,
               private formBuilder: FormBuilder,private commonService:CommonService,private toast:ToastrService) { }
 
@@ -76,6 +88,9 @@ export class DashboardComponent implements OnInit {
         this.loadUserData(this.user.userid);
         this.loadTeacherDetails(this.user.userid);
         this.getUpdateRequestForUser(this.user.userid);
+        this.requestsByNic(this.user.userid);
+        this.getAllSchools();
+        this.getAllProvinces();
       }
 
 
@@ -362,5 +377,135 @@ export class DashboardComponent implements OnInit {
         }
       );
   }
+
+
+  requestsByNic(nic:string){
+    this.teacherService.getAllRequestForUser(nic)
+      .pipe(first())
+      .subscribe(
+        (data:any)=>{
+          console.log("requests => ",data.body);
+
+          for (let i = 0; i < data.body.length; i++) {
+            const r = data.body[i];
+
+            let statusId = r.status;
+            let status = '';
+            let flag=false;
+
+            if (statusId == 0){
+              status="Pending";
+              flag=true;
+            }else if(statusId ==1){
+              status ="Approved";
+            }else {
+              status="Rejected";
+            }
+
+            const request = {
+              id:r.idrequest,
+              status:status,
+              province:r.province.name,
+              school:r.school.name,
+              comment:r.comment,
+              flag :flag
+            }
+  
+            this.allRequestsArray.push(request);
+          }
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+  }
+
+  updateRequest(data:any,id:number){
+    console.log("data =>",data);
+    console.log("id ==>", id);
+
+    let schoolId = 0;
+    let provinceId= 0;
+
+    if(!isNaN(Number(data.schoolId))){
+      schoolId = data.schoolId;
+    }
+
+    if(!isNaN(Number(data.provinceId))){
+      provinceId = data.provinceId;
+    }
+
+    let requestData = {
+      id:id,
+      schoolId:schoolId,
+      provinceId:provinceId,
+      comment:data.comment
+    }
+
+    this.teacherService.updateRequest(requestData)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          this.toast.success("Transfer Request Updated","Success",{timeOut: 3000});
+          setTimeout(()=>{
+            return window.location.reload();
+          }, 1000);
+         
+
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    
+  }
+
+  getAllSchools() {
+    this.commonService.getAllSchools()
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          console.log("all schools => ", data.body);
+
+          for (let i = 0; i < data.body.length; i++) {
+            const s = data.body[i];
+            const school = {
+              id: s.idschool,
+              name: s.name
+            }
+            this.schoolList.push(school);
+          }
+
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  getAllProvinces() {
+    this.commonService.getAllProvinces()
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          console.log("all provinces => ", data.body);
+
+          for (let i = 0; i < data.body.length; i++) {
+            const p = data.body[i];
+            const province = {
+              id: p.id,
+              name: p.name
+            }
+            this.provinceList.push(province);
+          }
+
+        },
+        error => {
+          console.log(error);
+
+        }
+      );
+  }
+
 
 }

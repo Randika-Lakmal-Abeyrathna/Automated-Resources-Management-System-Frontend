@@ -21,6 +21,8 @@ export class TeacherService {
   private _addTeacherRequestUrl = environment.baseUrl+"/api/teacher/teacherTransfer/add";
   private _getAllPendingOnBoardRequestUrl = environment.baseUrl+"/api/teacher/find/onboarding/";
   private _approveOnBoardRequestUrl =environment.baseUrl+"/api/teacher/approve/onboarding/";
+  private _getAllRequestForNicUrl = environment.baseUrl+"/api/request/find/user/";
+  private _updateRequestUrl = environment.baseUrl+"/api/request/update";
 
 
   constructor(private http:HttpClient,private router: Router,private toast:ToastrService) { }
@@ -76,6 +78,14 @@ export class TeacherService {
 
   approveOnBoardRequest(requestOnBoardId:number){
     return this.http.get(this._approveOnBoardRequestUrl+requestOnBoardId,{observe:'response' as 'body'});
+  }
+
+  getAllRequestForUser(nic:string){
+    return this.http.get(this._getAllRequestForNicUrl+nic,{observe:'response' as 'body'});
+  }
+
+  updateRequest(data:any){
+    return this.http.put(this._updateRequestUrl,data,{observe:'response' as 'body'});
   }
 
 }
