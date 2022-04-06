@@ -7,7 +7,6 @@
       <ng-select ngModel="{{request.provinceId}}" name ="provinceId" required >
         <ng-option *ngFor="let p of provinceList" [value]="p.id">{{p.name | titlecase}}</ng-option>
       </ng-select>
-      <!-- <input type="text" ngModel="{{request.provinceId}}" id="provinceId" name="provinceId" class="form-control teacherRequest-form__input"  placeholder="Enter Province"/> -->
     </div>
 
     <div class="col-md-6 mt-4">

@@ -172,10 +172,60 @@
               <thead>
               <th>Request Id</th>
               <th>Status</th>
+              <th>Comment</th>
               <th></th>
               </thead>
               <tbody>
-
+                <tr *ngFor="let req of allRequestsArray">
+                  <td>{{req.id}}</td>
+                  <td>{{req.status}}</td>
+                  <td>{{req.comment}}</td>
+                  <td >
+                    <button *ngIf="req.flag" type="button" class="btn btn-warning" data-bs-toggle="modal" attr.data-bs-target="#update{{req.id}}">
+                      Update <i class="bi bi-arrow-up-short"></i>
+                    </button>
+                  </td>
+                  <!--          Request Update box start-->
+  
+                  <div class="modal fade"  attr.id="update{{req.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" >Update Request</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form #updateRequestForm="ngForm" (ngSubmit)="updateRequest(updateRequestForm.value,req.id)">
+                        <div class="modal-body">
+                          <div class="col-md-6 mt-4">
+                            <label class="form-label teacherRequest-form__label">Province</label>
+                            <ng-select ngModel="{{req.province}}"  name ="provinceId" required >
+                              <ng-option *ngFor="let p of provinceList" [value]="p.id">{{p.name | titlecase}}</ng-option>
+                            </ng-select>
+                          </div>
+                      
+                          <div class="col-md-6 mt-4">
+                            <label class="form-label teacherRequest-form__label">School Name</label>
+                            <ng-select ngModel="{{req.school}}" name ="schoolId" required >
+                              <ng-option *ngFor="let s of schoolList" [value]="s.id">{{s.name | titlecase}}</ng-option>
+                            </ng-select>
+                          </div>
+                      
+                          <div class="col-md-6 mt-4">
+                            <label class="form-label teacherRequest-form__label">Comment</label>
+                            <input type="text" ngModel="{{req.comment}}" name="comment" class="form-control teacherRequest-form__input">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" >Update <i class="bi bi-trash3-fill"></i></button>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!--          Request Update box end-->
+                </tr>
               </tbody>
             </table>
           </div>
