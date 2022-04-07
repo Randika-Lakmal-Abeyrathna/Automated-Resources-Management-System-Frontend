@@ -56,7 +56,8 @@ export class DataentryDashboardComponent implements OnInit {
               contactNumber:alldata['user']['contactNumber1'],
               appointmentDate:alldata['appointmentdate'],
               nic:alldata['user']['nic'],
-              teacherType:alldata['teacherType']['type']
+              teacherType:alldata['teacherType']['type'],
+              school:alldata['school']['name']
             }
 
             this.allTeacherDataArray.push(allTeacherData);
