@@ -16,6 +16,7 @@
             <th>Contact Number</th>
             <th>Appointed Date</th>
             <th>NIC</th>
+            <th>School</th>
             <th>Teacher Type</th>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
               <td>{{all.contactNumber}}</td>
               <td>{{all.appointmentDate | date}}</td>
               <td>{{all.nic}}</td>
+              <td>{{all.school | titlecase}}</td>
               <td>{{all.teacherType | titlecase}}</td>
             </tr>
             </tbody>
