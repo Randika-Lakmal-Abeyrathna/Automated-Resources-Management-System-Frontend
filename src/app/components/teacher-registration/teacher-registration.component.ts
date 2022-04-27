@@ -71,6 +71,9 @@ export class TeacherRegistrationComponent implements OnInit {
 
   // Submit teacher Form
   submitTeacher(data: any) {
+
+    data.userNic = this.register.userNic;
+
     console.log("register data ", data);
     // Set flag to true
     let is_valid = true;
@@ -125,13 +128,12 @@ export class TeacherRegistrationComponent implements OnInit {
         .subscribe(
           (data: any) => {
             console.log(data)
-            if(data?.body?.status == 200){
-
-            this.toast.error(data?.body?.message, "Error", { timeOut: 3000 })
-            this.clear()
-            }else{
-
+            if(data.status == 201){
               this.toast.success("Registered The Teacher Successfully", "Success", { timeOut: 3000 })
+              this.clear()
+
+            }else{
+              this.toast.error(data?.body?.message, "Error", { timeOut: 3000 })
               this.clear()
             }
  
