@@ -26,6 +26,8 @@
                             <hr>
                             Appointed Data: {{requestData.appointedDate | date}}
                             <hr>
+                            Current School Experiance: <b>{{requestData.currentSchoolExperiance }}</b>
+                            <hr>
                             Subjects: <span *ngFor="let subject of subjects "> <br>  {{subject | uppercase}}</span>
                             <hr>
                             Current Province: {{requestData.currentProvince | titlecase}}

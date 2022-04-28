@@ -24,7 +24,8 @@ export class AdminApproveRequestComponent implements OnInit {
     appointedDate:'',
     currentProvince:'',
     requestedSchool:'',
-    requestedProvince:''
+    requestedProvince:'',
+    currentSchoolExperiance:''
   }
 
   subjects:Array<any>=[];
@@ -71,7 +72,7 @@ export class AdminApproveRequestComponent implements OnInit {
           this.requestData.comment = data.body.comment;
           this.requestData.currentSchool = data.body.teacher.school.name;
           this.requestData.appointedDate = data.body.teacher.appointmentdate;
-
+          this.requestData.currentSchoolExperiance =this.calcDate(this.requestData.appointedDate);
           for(let i =0; i<data.body.teacher.subjects.length;i++){
             let subject = data.body.teacher.subjects[i];
             let subjectName =subject.name +' - '+subject.description;
@@ -89,6 +90,63 @@ export class AdminApproveRequestComponent implements OnInit {
         }
       );
   }
+
+ calcDate(date:string):string{
+    /*
+    * calcDate() : Calculates the difference between two dates
+    * @date1 : "First Date in the format M-D-Y"
+    * @date2 : "Second Date in the format M-D-Y"
+    * return : Array
+    */
+    //Initiate date object
+    const dt_date1 = new Date(date);
+    const dt_date2= new Date();
+    //Get the Timestamp
+    var date1 =dt_date1.getTime();
+    var date2 = dt_date2.getTime();
+    
+    var calc;
+    //Check which timestamp is greater
+    if (date1 < date2){
+        calc = new Date(date2 - date1) ;
+
+        //Retrieve the date, month and year
+    var calcFormatTmp = calc.getDate() + '-' + (calc.getMonth()+1)+ '-'+calc.getFullYear();
+    //Convert to an array and store
+    var calcFormat = calcFormatTmp.split("-");
+    //Subtract each member of our array from the default date
+    var c0:number =parseInt(calcFormat[0]);
+    var c1:number =parseInt(calcFormat[1]);
+    var c2:number =parseInt(calcFormat[2]);
+    var days_passed :number = Math.abs(c0) - 1;
+    var months_passed = Math.abs(c1) - 1;
+    var years_passed = Math.abs(c2 -   1970);
+    
+    //Set up custom text
+    const yrsTxt =["year", "years"];
+    const mnthsTxt = ["month", "months"];
+    const daysTxt = ["day", "days"]; 
+    
+    //Convert to days and sum together
+    var total_days = (years_passed * 365) + (months_passed * 30.417) + days_passed;
+    
+    //display result with custom text
+    const result = ((years_passed == 1) ? years_passed+ ' '+ yrsTxt[0] + ' ' : (years_passed > 1 )  ? 
+    years_passed+ ' ' + yrsTxt[1] + ' ' : '') + 
+    ((months_passed == 1) ? months_passed+ ' ' + mnthsTxt[0] :  (months_passed > 1) ? 
+     months_passed+ ' ' + mnthsTxt[1] + ' ' : '') +
+    ((days_passed == 1) ? days_passed+ ' ' + daysTxt[0] : (days_passed > 1) ? 
+    days_passed+ ' ' + daysTxt[1] : '' );
+
+    console.log("Apointed Dates ==> " ,result);
+    return result;
+    }else{
+      console.log("Invalid Date");
+      return "";
+    }
+    
+  }
+  
 
   getSuggestionForRequest(requestId:number){
 
