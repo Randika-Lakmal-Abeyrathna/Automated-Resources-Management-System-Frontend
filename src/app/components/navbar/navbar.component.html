@@ -24,12 +24,17 @@
           <a class="nav-link" href="/schooldetail">School Details</a>
         </li>
         <li *ngIf="userLogedIn" class="nav-item">
+          <a class="nav-link" href="/change-password">Change Password</a>
+        </li>
+        <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
       </ul>
 
       <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='user' && teacherData.teacherType != 'principal' && userLogedIn">
-
+        <li *ngIf="userLogedIn" class="nav-item">
+          <a class="nav-link" href="/change-password">Change Password</a>
+        </li>
         <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
@@ -50,11 +55,17 @@
 
       <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='admin' && userLogedIn">
         <li *ngIf="userLogedIn" class="nav-item">
+          <a class="nav-link" href="/change-password">Change Password</a>
+        </li>
+        <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>
       </ul>
 
       <ul class="navbar-nav mr-auto" *ngIf="userData.userType=='superadmin' && userLogedIn">
+        <li *ngIf="userLogedIn" class="nav-item">
+          <a class="nav-link" href="/change-password">Change Password</a>
+        </li>
         <li *ngIf="userLogedIn" class="nav-item">
           <a class="btn btn-outline-primary my-2 my-sm-0" (click)="logout()" >Logout</a>
         </li>

@@ -21,6 +21,7 @@ import { SchoolRegistrationComponent } from './components/school-registration/sc
 import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-onboard.component';
 import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
 import { DeniedComponent } from './components/denied/denied.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,9 @@ const routes: Routes = [
   },
   {
     path:"denied",component:DeniedComponent
+  },
+  {
+    path:"change-password",component:ChangePasswordComponent
   },
 
   { path: "", redirectTo: '/login', pathMatch: 'full' },
