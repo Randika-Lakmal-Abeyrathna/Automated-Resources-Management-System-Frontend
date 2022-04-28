@@ -30,6 +30,7 @@ import { SchoolRegistrationComponent } from './components/school-registration/sc
 import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-onboard.component';
 import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
 import { DeniedComponent } from './components/denied/denied.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { DeniedComponent } from './components/denied/denied.component';
     TeacherRequestComponent,
     TeacherOnboardComponent,
     SuperAdminApproveRequestComponent,
-    DeniedComponent
+    DeniedComponent,
+    ChangePasswordComponent
 
   ],
   imports: [

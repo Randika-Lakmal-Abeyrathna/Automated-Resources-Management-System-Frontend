@@ -16,6 +16,7 @@ export class UserService {
   private _deleteUpdateUserRequestUrl =environment.baseUrl+"/api/updateuser/";
   private _getAllLockedUsersUrl =environment.baseUrl+"/api/user/lock/all";
   private _unlockUserUrl =environment.baseUrl+"/api/user/unlock/";
+  private _changePassword = environment.baseUrl+"/api/user/reset"
 
   constructor(private http:HttpClient, private router: Router,private toast:ToastrService) { }
 
@@ -45,6 +46,10 @@ export class UserService {
 
   unlockUser(nic:string){
     return this.http.get(this._unlockUserUrl+nic,{observe:'response' as 'body'});
+  }
+
+  changePassword(data:any){
+    return this.http.post<any>(this._changePassword,data,{observe:'response' as 'body'});
   }
 
 }
