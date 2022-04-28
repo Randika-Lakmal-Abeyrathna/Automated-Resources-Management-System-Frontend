@@ -31,6 +31,7 @@ import { TeacherOnboardComponent } from './components/teacher-onboard/teacher-on
 import { SuperAdminApproveRequestComponent } from './components/super-admin-approve-request/super-admin-approve-request.component';
 import { DeniedComponent } from './components/denied/denied.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { TeacherLeaveComponent } from './components/teacher-leave/teacher-leave.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     TeacherOnboardComponent,
     SuperAdminApproveRequestComponent,
     DeniedComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    TeacherLeaveComponent
 
   ],
   imports: [
