@@ -1,0 +1,43 @@
+<!--  Principle Area start-->
+
+<div class="container-fluid" selenium-Id="teacher-transfer-request-page">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <h5 class="card-header">Teacher Transfer Requests</h5>
+          <div class="card-body">
+            <div>
+              <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+            </div>
+            <br>
+            <table class="table">
+              <thead>
+              <th>NIC</th>
+              <th>Name</th>
+              <th>Contact Number</th>
+              <th>Request Type</th>
+              <th>Request Status</th>
+              <th>Comment</th>
+              <th>Appointment Date</th>
+              <th>Onboard Status</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let pending of allTeacherRequest | filter:data">
+                <td>{{pending.nic |titlecase}}</td>
+                <td>{{pending.name |titlecase}}</td>
+                <td>{{pending.contactNo}}</td>
+                <td>{{pending.requestType |titlecase}}</td>
+                <td>{{pending.requestStatus |titlecase}}</td>
+                <td>{{pending.comment |titlecase}}</td>
+                <td>{{pending.appointmentDate}}</td>
+                <td>{{pending.onboardStatus |titlecase}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>

@@ -133,6 +133,16 @@ export class AuthRouteGuard implements CanActivate {
         }
       }
 
+      if (state.url.indexOf("/teacher-leave") > -1 ) {
+
+        if(userData.user_role == 'ROLE_USER'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
+      }
+
       if (state.url.indexOf("/change-password") > -1 ) {
         return true;
       }
@@ -226,6 +236,10 @@ export class AuthRouteGuard implements CanActivate {
         return false;
       }
       if (state.url.indexOf("teacher-onboard") > -1) {
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+      if (state.url.indexOf("teacher-leave") > -1) {
         this.route.navigateByUrl("/login");
         return false;
       }

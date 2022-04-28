@@ -23,6 +23,7 @@ export class TeacherService {
   private _approveOnBoardRequestUrl =environment.baseUrl+"/api/teacher/approve/onboarding/";
   private _getAllRequestForNicUrl = environment.baseUrl+"/api/request/find/user/";
   private _updateRequestUrl = environment.baseUrl+"/api/request/update";
+  private _getAllteacherRequestForSchoolUrl = environment.baseUrl+"/api/teacher/find/request/";
 
 
   constructor(private http:HttpClient,private router: Router,private toast:ToastrService) { }
@@ -86,6 +87,10 @@ export class TeacherService {
 
   updateRequest(data:any){
     return this.http.put(this._updateRequestUrl,data,{observe:'response' as 'body'});
+  }
+
+  getTeacherRequestFroSchoolId(schoolid:number){
+    return this.http.get(this._getAllteacherRequestForSchoolUrl+schoolid,{observe:'response' as 'body'});
   }
 
 }
