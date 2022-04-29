@@ -42,8 +42,7 @@ export class TeacherRequestComponent implements OnInit {
       if (value) {
         this.user.userid = value.userid;
         this.getTeacherByNic(this.user.userid);
-        this.getAllSchools();
-        this.getAllProvinces();
+        
       }
 
     })
@@ -56,6 +55,16 @@ export class TeacherRequestComponent implements OnInit {
       (data: any) => {
         console.log("teacher data => ", data.body);
           this.teacherData.id = data.body.id;
+          if (data.body.teacherType.type == 'teacher-provincial'){
+            let province = data.body.school.zonal.district.province;
+            console.log("province => ",province);
+            
+            this.provinceList.push(province);
+            this.getSchoolsByProvince(province.id);
+          }else{
+            this.getAllSchools();
+            this.getAllProvinces();
+          }
 
       },
       error => {
@@ -63,6 +72,30 @@ export class TeacherRequestComponent implements OnInit {
       }
     );
   }
+
+  getSchoolsByProvince(provinceId:number){
+    this.commonService.getSchoolsByProvince(provinceId)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+          console.log("province schools => ", data.body);
+
+          for (let i = 0; i < data.body.length; i++) {
+            const s = data.body[i];
+            const school = {
+              id: s.idschool,
+              name: s.name
+            }
+            this.schoolList.push(school);
+          }
+
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
 
   // Submit teacher Form
   submitRequest(data: any) {
