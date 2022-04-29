@@ -189,7 +189,7 @@ export class TeacherRegistrationComponent implements OnInit {
             const s = data.body[i];
             const subject = {
               id: s.id,
-              name: s.name
+              name: s.name +' - ' +s.description
             }
             this.subjectsList.push(subject);
           }
