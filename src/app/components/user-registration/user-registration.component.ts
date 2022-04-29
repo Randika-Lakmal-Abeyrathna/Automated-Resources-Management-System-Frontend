@@ -100,6 +100,21 @@ export class UserRegistrationComponent implements OnInit {
     if (data.nic == null  || data.nic ==''){
       is_valid= false;
       this.toast.error("NIC cannot be empty","Error",{timeOut: 3000})
+    }else{
+      if(data.nic.length == 10){
+       let lastChar =data.nic.charAt(length-1);
+       if(lastChar =='v'|| lastChar =='V'|| lastChar =='x'||lastChar=='X'){
+
+       }else{
+        is_valid= false;
+        this.toast.error("NIC pattern invalid","Error",{timeOut: 3000})
+       }
+      }else if (data.nic.length ==12){
+
+      }else{
+        is_valid= false;
+      this.toast.error("NIC pattern invalid","Error",{timeOut: 3000})
+      }
     }
 
     if (data.email == null  || data.email ==''){
