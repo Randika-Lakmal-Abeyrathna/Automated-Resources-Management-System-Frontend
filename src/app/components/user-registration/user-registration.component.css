@@ -10,3 +10,6 @@
 .user-form__input{
   box-shadow: none !important;
 }
+.required{
+  color: red;
+}

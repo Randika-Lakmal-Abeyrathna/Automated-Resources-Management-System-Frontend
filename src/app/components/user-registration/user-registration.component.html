@@ -3,7 +3,7 @@
   <h4 class="text-left mb-4">User Registration</h4>
   <form #addUser="ngForm" (ngSubmit)="submitUser(addUser.value)" class="row g-3">
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">Salutation</label>
+      <label class="form-label user-form__label">Salutation <span class="required">*</span></label>
       <select class="form-select user-form__input" ngModel="{{userDetails.salutationId}}" name="salutationId">
         <option value="0">Choose...</option>
         <option value="1">Mr</option>
@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">First Name</label>
+      <label class="form-label user-form__label">First Name <span class="required">*</span></label>
          <input type="text" class="form-control user-form__input" ngModel="{{userDetails.firstName}}" name="firstName" >
     </div>
     <div class="col-md-6 mt-4">
@@ -21,7 +21,7 @@
         <input type="text" class="form-control user-form__input" ngModel="{{userDetails.middleName}}" name="middleName" >
     </div>
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">Last Name</label>
+      <label class="form-label user-form__label">Last Name<span class="required">*</span></label>
         <input type="text" class="form-control user-form__input" ngModel="{{userDetails.lastName}}" name="lastName">
             
     </div>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">City</label>
+      <label class="form-label user-form__label">City <span class="required">*</span></label>
         <ng-select ngModel="{{userDetails.cityId}}" name="cityId" required>
           <ng-option *ngFor="let c of cityList" [value]="c.id">{{c.name | titlecase}}</ng-option>
         </ng-select>
@@ -59,31 +59,31 @@
       
     </div>
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">NIC</label>
+      <label class="form-label user-form__label">NIC <span class="required">*</span></label>
       <input type="text" class="form-control user-form__input" ngModel="{{userDetails.nic}}" name="nic" required>
       
     </div>
 
     <div class="col-md-6 mt-4">
-      <label class="form-label user-form__label">Email</label>
+      <label class="form-label user-form__label">Email <span class="required">*</span></label>
       <input type="email" class="form-control user-form__input" ngModel="{{userDetails.email}}" name="email" required>
       
     </div>
 
     <div class="col-md-6 mt-4">
-      <label  class="form-label user-form__label">User Type</label>
+      <label  class="form-label user-form__label">User Type <span class="required">*</span></label>
       <ng-select ngModel="{{userDetails.userTypeId}}" name="userTypeId" required>
         <ng-option *ngFor="let u of userTypeList" [value]="u.id">{{u.name | titlecase}}</ng-option>
       </ng-select>
     </div>
     <div class="col-md-6 mt-4">
-      <label  class="form-label user-form__label">Status</label>
+      <label  class="form-label user-form__label">Status <span class="required">*</span></label>
       <ng-select ngModel="{{userDetails.statusId}}" name="statusId" required>
         <ng-option *ngFor="let s of statusList" [value]="s.id">{{s.name | titlecase}}</ng-option>
       </ng-select>
     </div>
     <div class="col-md-6 mt-4">
-      <label  class="form-label user-form__label">Gender</label>
+      <label  class="form-label user-form__label">Gender <span class="required">*</span></label>
       <select class="form-select user-form__input" ngModel="{{userDetails.genderId}}" name="genderId" >
         <option >Choose...</option>
         <option value="1">Male</option>
@@ -91,7 +91,7 @@
       </select>
     </div>
     <div class="col-md-6 mt-4">
-      <label  class="form-label user-form__label">Marital Status</label>
+      <label  class="form-label user-form__label">Marital Status <span class="required">*</span></label>
       <select class="form-select user-form__input" ngModel="{{userDetails.maritalStatusId}}" name="maritalStatusId" >
         <option >Choose...</option>
         <option value="1">Single</option>
