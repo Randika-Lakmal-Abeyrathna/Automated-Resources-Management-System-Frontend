@@ -102,7 +102,8 @@ export class UserRegistrationComponent implements OnInit {
       this.toast.error("NIC cannot be empty","Error",{timeOut: 3000})
     }else{
       if(data.nic.length == 10){
-       let lastChar =data.nic.charAt(length-1);
+        let nic = data.nic;
+       let lastChar =nic.charAt(9);
        if(lastChar =='v'|| lastChar =='V'|| lastChar =='x'||lastChar=='X'){
 
        }else{
