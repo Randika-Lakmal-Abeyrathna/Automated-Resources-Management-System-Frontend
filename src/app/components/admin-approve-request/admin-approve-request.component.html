@@ -72,6 +72,10 @@
         <div class="card">
             <h5 class="card-header">Suggested Schools</h5>
             <div class="card-body">
+              <div>
+                <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+              </div>
+              <br>
                 <table class="table">
                     <thead>
                     <th>School Name</th>
@@ -81,7 +85,7 @@
                     <th></th>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let school of suggestedSchools">
+                      <tr *ngFor="let school of suggestedSchools | filter:data">
                         <td>{{school.schoolName |uppercase}}</td>
                         <td>{{school.schoolType |uppercase}}</td>
                         <td>{{school.slot }}</td>

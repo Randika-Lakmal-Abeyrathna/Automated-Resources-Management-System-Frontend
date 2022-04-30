@@ -12,6 +12,8 @@ export class AdminApproveRequestComponent implements OnInit {
 
   id: any | null;
 
+  data: string ='';
+
   requestData ={
     id:0,
     nic:'',
