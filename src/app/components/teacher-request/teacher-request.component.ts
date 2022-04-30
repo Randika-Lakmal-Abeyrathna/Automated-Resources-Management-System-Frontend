@@ -62,7 +62,7 @@ export class TeacherRequestComponent implements OnInit {
             this.provinceList.push(province);
             this.getSchoolsByProvince(province.id);
           }else{
-            this.getAllSchools();
+            // this.getAllSchools();
             this.getAllProvinces();
           }
 
@@ -72,6 +72,9 @@ export class TeacherRequestComponent implements OnInit {
       }
     );
   }
+  onchange(data:any){
+    this.getSchoolsByProvince(data);
+  }
 
   getSchoolsByProvince(provinceId:number){
     this.commonService.getSchoolsByProvince(provinceId)
@@ -79,7 +82,7 @@ export class TeacherRequestComponent implements OnInit {
       .subscribe(
         (data: any) => {
           console.log("province schools => ", data.body);
-
+          this.schoolList=[];
           for (let i = 0; i < data.body.length; i++) {
             const s = data.body[i];
             const school = {

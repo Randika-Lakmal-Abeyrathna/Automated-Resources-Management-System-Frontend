@@ -4,7 +4,7 @@
 
     <div class="col-md-6 mt-4">
       <label class="form-label teacherRequest-form__label">Province</label>
-      <ng-select ngModel="{{request.provinceId}}" name ="provinceId" required >
+      <ng-select ngModel="{{request.provinceId}}" name ="provinceId" (change)='onchange($event)' required >
         <ng-option *ngFor="let p of provinceList" [value]="p.id">{{p.name | titlecase}}</ng-option>
       </ng-select>
     </div>
