@@ -129,7 +129,7 @@ export class SchoolRegistrationComponent implements OnInit {
           const s = data.body[i];
           const subject = {
             id:s.id,
-            subject:s.name +' - ' +s.description
+            subject:s.id+'-'+s.name +' - ' +s.description
           }
           this.allSubject.push(subject);
         }
