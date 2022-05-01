@@ -32,6 +32,7 @@ import { SuperAdminApproveRequestComponent } from './components/super-admin-appr
 import { DeniedComponent } from './components/denied/denied.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TeacherLeaveComponent } from './components/teacher-leave/teacher-leave.component';
+import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { TeacherLeaveComponent } from './components/teacher-leave/teacher-leave.
     SuperAdminApproveRequestComponent,
     DeniedComponent,
     ChangePasswordComponent,
-    TeacherLeaveComponent
+    TeacherLeaveComponent,
+    AllSchoolsComponent
 
   ],
   imports: [
