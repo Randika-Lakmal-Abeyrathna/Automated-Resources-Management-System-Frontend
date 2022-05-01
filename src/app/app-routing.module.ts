@@ -23,6 +23,7 @@ import { SuperAdminApproveRequestComponent } from './components/super-admin-appr
 import { DeniedComponent } from './components/denied/denied.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TeacherLeaveComponent } from './components/teacher-leave/teacher-leave.component';
+import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
 
 
 const routes: Routes = [
@@ -74,6 +75,10 @@ const routes: Routes = [
   },
   {
     path: "schoolRegistration", component: SchoolRegistrationComponent,
+    canActivate: [AuthRouteGuard]
+  },
+  {
+    path: "schools", component: AllSchoolsComponent,
     canActivate: [AuthRouteGuard]
   },
 

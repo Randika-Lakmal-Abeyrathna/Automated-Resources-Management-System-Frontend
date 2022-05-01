@@ -1,0 +1,36 @@
+
+<div class="container-fluid" selenium-Id="all-schools-page">
+    <div class="row">
+        <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="card">
+          <h5 class="card-header">All Schools Details</h5>
+          <div class="card-body">
+            <div>
+              <input class="form-control" type="text" [(ngModel)]="data" placeholder="Search">
+            </div>
+            <br>
+            <table class="table">
+              <thead>
+              <th>Name</th>
+              <th>School Type</th>
+              <th>Zonal</th>
+              <th>City</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let all of allSchoolDataArray | filter:data">
+                <td>{{all.name |titlecase}}</td>
+                <td>{{all.schoolType |titlecase}}</td>
+                <td>{{all.zonal |titlecase}}</td>
+                <td>{{all.city | titlecase}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
+  

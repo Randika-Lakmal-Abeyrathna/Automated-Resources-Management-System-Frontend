@@ -113,6 +113,15 @@ export class AuthRouteGuard implements CanActivate {
         }
       }
 
+      if (state.url.indexOf("/schools") > -1) {
+        if(userData.user_role == 'ROLE_DATAENTRY'){
+          return true;
+        }else{
+          this.route.navigateByUrl('/denied');
+          return false;
+        }
+      }
+
       if (state.url.indexOf("/teacherupdate") > -1 ) {
 
         if(userData.user_role == 'ROLE_USER'){
@@ -232,6 +241,10 @@ export class AuthRouteGuard implements CanActivate {
         return false;
       }
       if (state.url.indexOf("schoolRegistration") > -1) {
+        this.route.navigateByUrl("/login");
+        return false;
+      }
+      if (state.url.indexOf("schools") > -1) {
         this.route.navigateByUrl("/login");
         return false;
       }
