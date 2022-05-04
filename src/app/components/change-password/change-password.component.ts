@@ -66,6 +66,10 @@ export class ChangePasswordComponent implements OnInit {
       this.toast.error("Password Mismatch","Error",{timeOut: 3000});
       flag =false;
     }
+    if(this.changePasswordForm.value.password1 == '' || this.changePasswordForm.value.password1==null){
+      this.toast.error("Password cannot be empty","Error",{timeOut: 3000});
+      flag =false;
+    }
     
     if (flag){
       this.userService.changePassword(data)
