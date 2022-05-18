@@ -33,6 +33,7 @@ import { DeniedComponent } from './components/denied/denied.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TeacherLeaveComponent } from './components/teacher-leave/teacher-leave.component';
 import { AllSchoolsComponent } from './components/all-schools/all-schools.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { AllSchoolsComponent } from './components/all-schools/all-schools.compon
     DeniedComponent,
     ChangePasswordComponent,
     TeacherLeaveComponent,
-    AllSchoolsComponent
+    AllSchoolsComponent,
+    FooterComponent
 
   ],
   imports: [
