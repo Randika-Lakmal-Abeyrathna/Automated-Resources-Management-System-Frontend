@@ -134,13 +134,13 @@ export class TeacherRegistrationComponent implements OnInit {
 
             }else{
               this.toast.error(data?.body?.message, "Error", { timeOut: 3000 })
-              this.clear()
+              // this.clear()
             }
  
           },
           error => {
             console.log(error);
-            this.clear();
+            // this.clear();
           }
         );
 
